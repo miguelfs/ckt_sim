@@ -5,11 +5,12 @@
 #ifndef CKT_SIM_NETLIST_H
 #define CKT_SIM_NETLIST_H
 
+#include <string>
 
 class Netlist {
 public:
 
-    explicit Netlist(char **text);
+    explicit Netlist(std::string*);
 
 private:
 };

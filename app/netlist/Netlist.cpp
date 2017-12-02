@@ -3,5 +3,6 @@
 //
 
 #include "Netlist.h"
+#include <string>
 
-Netlist::Netlist(char **text)  {}
+Netlist::Netlist(string*)  {}
