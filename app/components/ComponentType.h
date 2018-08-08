@@ -5,18 +5,18 @@
 #ifndef CKT_SIM_COMPONENTTYPE_H
 #define CKT_SIM_COMPONENTTYPE_H
 enum Component_Type {
-    Resistor = 'R',
-    Inductor = 'L',
-    Capacitor = 'G',
-    VoltageControlledVoltageSource = 'E',
-    VoltageControlledCurrentSource = 'F',
-    CurrentControlledCurrentSource = 'G',
-    CurrentControlledVoltageSource = 'H',
-    CurrentSource = 'I',
-    VoltageSource = 'V',
-    AmpOp = 'O',
-    LinearResistorByParts = 'N',
-    IdealTransformer = 'K',
-    Key = '$'
+    resistor = 'R',
+    inductor = 'L',
+    capacitor = 'C',
+    voltageControlledVoltageSource = 'E',
+    voltageControlledCurrentSource = 'F',
+    currentControlledCurrentSource = 'G',
+    currentControlledVoltageSource = 'H',
+    currentSource = 'I',
+    voltageSource = 'V',
+    ampOp = 'O',
+    linearResistorByParts = 'N',
+    idealTransformer = 'K',
+    key = '$'
 };
 #endif //CKT_SIM_COMPONENTTYPE_H

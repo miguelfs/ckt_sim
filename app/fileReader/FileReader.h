@@ -6,16 +6,27 @@
 #define CKT_SIM_FILEREADER_H
 
 #include <string>
+#include <fstream>
+
 using namespace std;
 
 class FileReader {
 
 public:
-    explicit FileReader(string);
+
+     FileReader(string, int);
+
+
     string *getTextLines();
 
+    int numberOfLines;
 private:
-    string textLines[];
+    string* textLines;
+
+    int getNumberOfLines(ifstream);
+
+    int getNumberOfLines(string fileName);
+
 };
 
 

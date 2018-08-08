@@ -6,17 +6,30 @@
 #include <fstream>
 #include <iostream>
 
-FileReader::FileReader(string fileName) {
+FileReader::FileReader(string fileName, int number) {
 
-    ifstream is(fileName);
-    string str;
+    int numberOfLines = getNumberOfLines(fileName);
+    textLines = new string[numberOfLines];
+    ifstream in(fileName);
+
     int i = 0;
-    while(getline(is, str))
+    for( std::string line; getline( in, line ); )
     {
-        cout<<str<<endl;
-        textLines[i] = str;
+        textLines[i] = line;
+        i++;
     }
 }
+
+int FileReader::getNumberOfLines(string fileName) {
+    ifstream in(fileName);
+    int numberOfLines= 0;
+    for(string line; getline(in, line ); ) {
+        numberOfLines++;
+    }
+    this->numberOfLines = numberOfLines;
+    return numberOfLines;
+}
+
 
 string* FileReader::getTextLines() {
     return textLines;
