@@ -3,12 +3,12 @@
 //
 
 #include "Netlist.h"
-#include "../fileReader/FileReader.h"
 #include "Row.h"
+#include "../fileReader/FileReader.h"
 
 Netlist::Netlist(std::string fileName)  {
 
-    FileReader *fileReader = new FileReader(std::move(fileName), 3);
+    FileReader *fileReader = new FileReader(std::move(fileName));
     string *text = fileReader->getTextLines();
     int numberOfLines = fileReader->numberOfLines;
     this->numberOfNodes = (int) text[0].at(0);

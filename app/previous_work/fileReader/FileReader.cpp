@@ -6,7 +6,8 @@
 #include <fstream>
 #include <iostream>
 
-FileReader::FileReader(string fileName, int number) {
+
+FileReader::FileReader(string fileName) {
 
     int numberOfLines = getNumberOfLines(fileName);
     textLines = new string[numberOfLines];

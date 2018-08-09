@@ -1,12 +1,7 @@
 #include <iostream>
-#include "netlist/Netlist.h"
+#include "aula01/Aula01_program.h"
 
 int main() {
-
-    Netlist netlist = Netlist("/Users/miguel/Developer/CLionProjects/ckt_sim/arquivo.txt");
-    netlist.getComponents();
-
-
-    std::cout << "Hello, World!" << std::endl;
+    Aula01_program *aula01 = new Aula01_program("circuito02.net");
     return 0;
 }

@@ -14,7 +14,7 @@ class FileReader {
 
 public:
 
-     FileReader(string, int);
+     FileReader(string);
 
 
     string *getTextLines();
