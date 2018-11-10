@@ -7,6 +7,5 @@ int main() {
     netlist.getComponents();
 
 
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }

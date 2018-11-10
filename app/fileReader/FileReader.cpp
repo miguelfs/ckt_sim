@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iostream>
 
-FileReader::FileReader(string fileName, int number) {
+FileReader::FileReader(string fileName) {
 
     int numberOfLines = getNumberOfLines(fileName);
     textLines = new string[numberOfLines];
@@ -33,4 +33,17 @@ int FileReader::getNumberOfLines(string fileName) {
 
 string* FileReader::getTextLines() {
     return textLines;
+}
+
+int FileReader::getNumberOfNodes() {
+    int numberOfNodes = 0;
+    try {
+        numberOfNodes = std::stoi(textLines[0]);
+    }
+    catch (std::invalid_argument& error)
+    {
+        cout << "ERRO AO LER QUANTIDADE DE NÓS DO NETLIST, ARGUMENTO INVALIDO " << endl;
+        throw(error);
+    }
+    return numberOfNodes;
 }

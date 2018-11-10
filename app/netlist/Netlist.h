@@ -16,16 +16,19 @@ public:
 
 private:
     Component* components;
+    int** incidence_matrix;
 public:
     Component *getComponents();
 
 private:
-    int numberOfNodes;
+    int quantityOfNodes;
     Transient transient;
 
     void initializeTransient(std::string *text, int i);
 
     void initializeComponents(std::string *text, int i) const;
+
+    void generate_incidence_matrix(std::string *text_lines, int number_of_lines);
 };
 
 

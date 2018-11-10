@@ -14,7 +14,7 @@ class FileReader {
 
 public:
 
-     FileReader(string, int);
+     FileReader(string);
 
 
     string *getTextLines();
@@ -27,6 +27,7 @@ private:
 
     int getNumberOfLines(string fileName);
 
+    int getNumberOfNodes();
 };
 
 

@@ -14,7 +14,6 @@
 #include "../components/VoltageSource.h"
 #include "../components/AmpOp.h"
 #include "../components/LinearResistorByParts.h"
-#include "../components/IdealTransformer.h"
 #include "../components/Key.h"
 
 Row::Row(std::string row) {
@@ -46,8 +45,6 @@ Component * Row::getComponent() {
             return new AmpOp(stringRow);
         case linearResistorByParts:
             return new LinearResistorByParts(stringRow);
-        case idealTransformer :
-            return new IdealTransformer(stringRow);
         case key:
             return new Key(stringRow);
         default: {
