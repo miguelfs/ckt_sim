@@ -10,10 +10,27 @@
 
 class Transient {
 
+    enum initialConfiguration {
+        initialConditions,
+        operationPoint
+    };
+
+private:
+    double finalTime;
+    double step;
+    int stepsByTablePoint;
+    initialConfiguration initialConfig;
+
+    void splitRow(int quantityOfArguments, std::string row, std::string *arguments);
+
+    void setInitialConfiguration(std::string argument);
+
 public:
-    Transient(std::string row);
+
+    Transient(std::string row, int quantityOfArguments);
 
     Transient();
+
 };
 
 

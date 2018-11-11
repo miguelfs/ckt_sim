@@ -15,6 +15,10 @@ Netlist::Netlist(std::string fileName)  {
     initializeComponents(text, numberOfLines);
     quantityOfNodes = fileReader->getNumberOfNodes();
     orderOfMatrixG = quantityOfNodes + quantityOfAuxiliarCurrents;
+
+    if(text[numberOfLines - 1].compare(".TRAN")){
+        transient = Transient(text[numberOfLines - 1], 6);
+    }
 }
 
 void Netlist::initializeComponents(std::string *text, int numberOfLines) {
@@ -39,12 +43,6 @@ bool Netlist::isAuxiliarEquationNeeded(Component_Type type)  {
     return type == inductor || type == ampOp || type == voltageSource || type == voltageControlledVoltageSource ||
             type == currentControlledCurrentSource || type == currentControlledVoltageSource;
 }
-
-//void Netlist::initializeTransient(std::string *text, int numberOfLines) {
-//    if(text[numberOfLines - 1].at(0) == '.'){
-//        transient = * new Transient(text[sizeof(text) - 1]);
-//    }
-//}
 
 
 //void Netlist::generate_incidence_matrix(std::string *text_lines, int number_of_lines) {
