@@ -16,6 +16,6 @@ Capacitor::Capacitor(std::string row, int quantityOfArguments) : Component(capac
     capacitance = strtod(arguments[3].c_str(), nullptr);
     initialCurrent = getInitialCurrent(arguments[4]);
 
-//    std::cout << name << " " << nodes[0] << nodes[1] << " " << capacitance << " " << initialCurrent << std::endl;
+//i    std::cout << name << " " << nodes[0] << nodes[1] << " " << capacitance << " " << initialCurrent << std::endl;
 
 }
