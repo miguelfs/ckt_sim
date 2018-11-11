@@ -11,9 +11,12 @@
 class Capacitor : public Component{
 
 public:
-    Capacitor(std::string row);
+    Capacitor(std::string row, int quantityOfArguments);
+
 private:
-    double value;
+    double capacitance;
+    int nodes[2];
+    double initialCurrent;
 };
 
 

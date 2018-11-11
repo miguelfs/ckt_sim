@@ -11,7 +11,7 @@
 class VoltageControlledVoltageSource : public Component{
 
 public:
-    VoltageControlledVoltageSource(std::string row);
+    VoltageControlledVoltageSource(std::string row, int i);
 };
 
 

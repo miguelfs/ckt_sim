@@ -11,10 +11,12 @@
 class Inductor : public Component{
 
 public:
-    Inductor(std::string row);
+    Inductor(std::string row, int i);
 
 private:
-    double value;
+    double inductance;
+    int nodes[2];
+    double initialCurrent;
 };
 
 

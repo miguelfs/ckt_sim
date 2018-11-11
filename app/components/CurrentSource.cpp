@@ -4,6 +4,6 @@
 
 #include "CurrentSource.h"
 
-CurrentSource::CurrentSource(std::string row) {
+CurrentSource::CurrentSource(std::string row, int i) : Component(currentSource) {
 
 }

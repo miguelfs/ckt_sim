@@ -11,7 +11,7 @@
 class CurrentControlledCurrentSource : public Component {
 
 public:
-    CurrentControlledCurrentSource(std::string row);
+    CurrentControlledCurrentSource(std::string row, int i);
 };
 
 

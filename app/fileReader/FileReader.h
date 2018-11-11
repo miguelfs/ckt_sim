@@ -16,6 +16,7 @@ public:
 
      FileReader(string);
 
+    int getNumberOfNodes();
 
     string *getTextLines();
 
@@ -27,7 +28,6 @@ private:
 
     int getNumberOfLines(string fileName);
 
-    int getNumberOfNodes();
 };
 
 

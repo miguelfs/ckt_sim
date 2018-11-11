@@ -11,7 +11,7 @@
 class VoltageSource : public Component {
 
 public:
-    VoltageSource(std::string basic_string);
+    VoltageSource(std::string basic_string, int i);
 };
 
 

@@ -4,6 +4,6 @@
 
 #include "VoltageSource.h"
 
-VoltageSource::VoltageSource(std::string row) {
+VoltageSource::VoltageSource(std::string row, int i) : Component(voltageSource) {
 
 }

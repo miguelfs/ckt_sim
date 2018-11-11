@@ -4,6 +4,6 @@
 
 #include "CurrentControlledVoltageSource.h"
 
-CurrentControlledVoltageSource::CurrentControlledVoltageSource(std::string row) {
+CurrentControlledVoltageSource::CurrentControlledVoltageSource(std::string row, int i) : Component(currentControlledVoltageSource){
 
 }

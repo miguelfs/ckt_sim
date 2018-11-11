@@ -22,13 +22,23 @@ public:
 
 private:
     int quantityOfNodes;
+    int quantityOfAuxiliarCurrents;
+    int orderOfMatrixG;
     Transient transient;
 
     void initializeTransient(std::string *text, int i);
 
-    void initializeComponents(std::string *text, int i) const;
+    void initializeComponents(std::string *text, int i);
 
     void generate_incidence_matrix(std::string *text_lines, int number_of_lines);
+
+    void checkIfAuxiliarEquationIsNeeded(Component component) const;
+
+    void checkIfAuxiliarEquationIsNeeded(Component_Type type) const;
+
+    bool isAuxiliarEquationNeeded(Component_Type type) const;
+
+    bool isAuxiliarEquationNeeded(Component_Type type);
 };
 
 

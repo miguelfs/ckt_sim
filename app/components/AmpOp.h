@@ -11,7 +11,8 @@
 class AmpOp : public Component{
 
 public:
-    AmpOp(std::string row);
+
+    AmpOp(std::string row, int quantityOfArguments);
 };
 
 

@@ -1,4 +1,5 @@
-#include <iostream>
+
+#include <sstream>
 #include "netlist/Netlist.h"
 
 int main() {

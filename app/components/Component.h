@@ -7,19 +7,25 @@
 
 #include <string>
 #include "ComponentType.h"
-#include <string>
 
  class Component {
  public:
 
+
  private:
      Component_Type type;
+ public:
+     Component_Type getComponentType() const;
+     Component();
 
  protected:
      int *nodes;
-     char *name;
+     std::string name;
 
      void splitRow(int size, std::string row, std::string *arr);
+     double getInitialCurrent(std::string initialCurrent);
+
+     Component(Component_Type type);
  };
 
 #endif //CKT_SIM_COMPONENT_H

@@ -4,6 +4,6 @@
 
 #include "CurrentControlledCurrentSource.h"
 
-CurrentControlledCurrentSource::CurrentControlledCurrentSource(std::string row) {
+CurrentControlledCurrentSource::CurrentControlledCurrentSource(std::string row, int i) : Component(currentControlledCurrentSource){
 
 }

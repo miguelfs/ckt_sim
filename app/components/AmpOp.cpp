@@ -4,6 +4,6 @@
 
 #include "AmpOp.h"
 
-AmpOp::AmpOp(std::string row) {
+AmpOp::AmpOp(std::string row, int quantityOfArguments) : Component(ampOp) {
 
 }

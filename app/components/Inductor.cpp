@@ -3,14 +3,17 @@
 //
 
 #include "Inductor.h"
+#include <iostream>
 
-Inductor::Inductor(std::string row) {
-    std::string arguments[4];
-    splitRow(4, std::move(row), arguments);
-//    name = const_cast<char *>(arguments[1].c_str());
-    int array[2] = {atoi(arguments[1].c_str()), atoi(arguments[2].c_str())};
-    //   Resistor(const_cast<char *>(arguments[0].c_str()), array, atof(arguments[3].c_str()));
-    name = const_cast<char *>(arguments[0].c_str());
-    nodes = array;
-    value = atof(arguments[3].c_str());
+Inductor::Inductor(std::string row, int quantityOfArguments) : Component(inductor){
+    std::string arguments[quantityOfArguments];
+    splitRow(quantityOfArguments, std::move(row), arguments); //std::move to avoid unnecessary copies, only copy once
+
+    this->name = arguments[0];
+    nodes[0] = stoi(arguments[1]);
+    nodes[1] = stoi(arguments[2]);
+    inductance = strtod(arguments[3].c_str(), nullptr);
+    initialCurrent = getInitialCurrent(arguments[4]);
+
+//    std::cout << name << " " << nodes[0] << nodes[1] << " " << inductance << " " << initialCurrent << std::endl;
 }

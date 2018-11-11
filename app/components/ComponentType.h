@@ -15,8 +15,13 @@ enum Component_Type {
     currentSource = 'I',
     voltageSource = 'V',
     ampOp = 'O',
-    linearResistorByParts = 'N',
-    idealTransformer = 'K',
-    key = '$'
+    logicAnd = ')',
+    logicNand = '(',
+    logicOr = '}',
+    logicNor = '{',
+    flipFlop = '%',
+    monostable = '@',
+    reset = '!'
 };
+// commentary in the netlist starts with *, but since its not a component, it will not be described in this enum
 #endif //CKT_SIM_COMPONENTTYPE_H

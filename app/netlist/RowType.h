@@ -5,7 +5,7 @@
 #ifndef CKT_SIM_NETLISTROW_CPP_H
 #define CKT_SIM_NETLISTROW_CPP_H
 enum RowType {
-    Component,
-    Commentary = '*'
+    Component_row,
+    Commentary_row = '*'
 };
 #endif //CKT_SIM_NETLISTROW_CPP_H
