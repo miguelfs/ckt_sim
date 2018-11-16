@@ -7,3 +7,15 @@
 CurrentSource::CurrentSource(std::string row, int i) : Component(currentSource) {
 
 }
+
+void CurrentSource::stampG(double **Gmatrix) {
+
+}
+
+void CurrentSource::stampSolutionVector(double *solutionVector) {
+
+}
+
+void CurrentSource::stampRightSideVector(double *rightSideVector) {
+
+}

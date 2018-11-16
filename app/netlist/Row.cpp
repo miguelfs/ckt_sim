@@ -13,27 +13,20 @@
 #include "../components/CurrentSource.h"
 #include "../components/VoltageSource.h"
 #include "../components/AmpOp.h"
-#include "../components/LogicAnd.h"
-#include "../components/LogicNand.h"
-#include "../components/LogicOr.h"
-#include "../components/LogicNor.h"
-#include "../components/Monostable.h"
-#include "../components/FlipFlop.h"
-#include "../components/Reset.h"
 
 Row::Row(std::string row) {
     this->stringRow = row;
 }
 
-Component * Row::getComponent() {
+Component * Row::getComponent(double timeStep, int wire) {
 
     switch (stringRow.at(0)) {
         case resistor:
             return new Resistor(stringRow, 4);
         case inductor:
-            return new Inductor(stringRow, 5);
+            return new Inductor(stringRow, 5, timeStep, wire);
         case capacitor :
-            return new Capacitor(stringRow, 5);
+            return new Capacitor(stringRow, 5, timeStep);
         case voltageControlledVoltageSource:
             return new VoltageControlledVoltageSource(stringRow, 6);
         case voltageControlledCurrentSource:
@@ -47,21 +40,21 @@ Component * Row::getComponent() {
         case voltageSource :
             return new VoltageSource(stringRow, 4);
         case ampOp :
-            return new AmpOp(stringRow, 5);
-        case logicAnd:
-            return new LogicAnd(stringRow, 5);
-        case logicNand:
-            return new LogicNand(stringRow, 5);
-        case logicOr:
-            return new LogicOr(stringRow, 5);
-        case logicNor:
-            return new LogicNor(stringRow, 5);
-        case flipFlop:
-            return new FlipFlop(stringRow, 7);
-        case monostable:
-            return new Monostable(stringRow, 6);
-        case reset:
-            return new Reset(stringRow, 4);
+           return new AmpOp(stringRow, 5);
+//        case logicAnd:
+//            return new LogicAnd(stringRow, 5);
+//        case logicNand:
+//            return new LogicNand(stringRow, 5);
+//        case logicOr:
+//            return new LogicOr(stringRow, 5);
+//        case logicNor:
+//            return new LogicNor(stringRow, 5);
+//        case flipFlop:
+//            return new FlipFlop(stringRow, 7);
+//        case monostable:
+//            return new Monostable(stringRow, 6);
+//        case reset:
+//            return new Reset(stringRow, 4);
 
 
         default: {

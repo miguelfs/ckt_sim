@@ -6,6 +6,7 @@
 #define CKT_SIM_NETLIST_H
 
 #include <string>
+#include <vector>
 #include "../components/Component.h"
 #include "Transient.h"
 
@@ -14,13 +15,20 @@ public:
 
     explicit Netlist(std::string);
 
-private:
-    Component* components;
-    int** incidence_matrix;
-public:
-    Component *getComponents();
+    void buildThatG();
 
 private:
+    std::vector<Component> components;
+    double** GMatrix;
+    double* solutionsVector;
+    double* rightSideVector;
+
+public:
+    Component *getComponents();
+    void initializeGMatrix();
+
+private:
+    int quantityOfComponents;
     int quantityOfNodes;
     int quantityOfAuxiliarCurrents;
     int orderOfMatrixG;
@@ -28,7 +36,7 @@ private:
 
  //   void setTransientParameters(std::string *text, int i);
 
-    void initializeComponents(std::string *text, int i);
+    void initializeComponents(std::string *text, int i, double timeStep);
 
 //    void generate_incidence_matrix(std::string *text_lines, int number_of_lines);
 //
@@ -39,6 +47,10 @@ private:
 //    bool isAuxiliarEquationNeeded(Component_Type type) const;
 
     bool isAuxiliarEquationNeeded(Component_Type type);
+
+    void setTransient(const std::string *text, int numberOfLines);
+
+    void printThatG();
 };
 
 

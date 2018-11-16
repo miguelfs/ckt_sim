@@ -7,3 +7,15 @@
 CurrentControlledVoltageSource::CurrentControlledVoltageSource(std::string row, int i) : Component(currentControlledVoltageSource){
 
 }
+
+void CurrentControlledVoltageSource::stampG(double **Gmatrix) {
+
+}
+
+void CurrentControlledVoltageSource::stampSolutionVector(double *solutionVector) {
+
+}
+
+void CurrentControlledVoltageSource::stampRightSideVector(double *rightSideVector) {
+
+}

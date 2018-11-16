@@ -11,12 +11,22 @@
 class Inductor : public Component{
 
 public:
-    Inductor(std::string row, int i);
+    Inductor(std::string row, int i, double timeStep, int wire);
 
 private:
     double inductance;
     int nodes[2];
+    int wire;
     double initialCurrent;
+    double timeStep;
+
+    void stampG(double** Gmatrix) override;
+    void stampGtest(int order, double G[order][order]);
+
+    void stampSolutionVector(double* solutionVector) override;
+    void stampRightSideVector(double* rightSideVector) override;
+
+    void isEqualsZero(double number);
 };
 
 

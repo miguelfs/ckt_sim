@@ -12,7 +12,7 @@
 class Row {
 public:
     Row(std::string);
-    Component * getComponent();
+    Component *getComponent(double timeStep, int wire);
 
 private:
     std::string stringRow;

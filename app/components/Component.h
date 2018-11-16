@@ -12,6 +12,11 @@
  public:
 
 
+     //se G[a][b], a linha, b coluna
+     virtual void stampG(double** G);
+
+  //   virtual void stampGtest(int order, double G[][order]);
+
  private:
      Component_Type type;
  public:
@@ -25,7 +30,15 @@
      void splitRow(int size, std::string row, std::string *arr);
      double getInitialCurrent(std::string initialCurrent);
 
+     //conductanceMatrix * unknownValues = RightHandSideMatrix
+
+     virtual void stampSolutionVector(double* solutionVector) ;
+
+     virtual void stampRightSideVector(double* rightSideVector);
+
      Component(Component_Type type);
+
+     void GstampFor2x2Component(double **G, double stamp[2][2], int *nodes);
  };
 
 #endif //CKT_SIM_COMPONENT_H

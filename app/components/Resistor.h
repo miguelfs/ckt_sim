@@ -19,6 +19,10 @@ public:
     Resistor(char *name, int *nodes, double value);
 
     double resistance;
+
+    void stampG(double** Gmatrix) override;
+    void stampSolutionVector(double* solutionVector) override;
+    void stampRightSideVector(double* rightSideVector) override;
 };
 
 

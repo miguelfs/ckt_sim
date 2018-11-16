@@ -17,7 +17,9 @@ class Transient {
 
 private:
     double finalTime;
-    double step;
+    double stepTime;
+
+private:
     int stepsByTablePoint;
     initialConfiguration initialConfig;
 
@@ -30,6 +32,9 @@ public:
     Transient(std::string row, int quantityOfArguments);
 
     Transient();
+
+    double getStepTime();
+
 
 };
 

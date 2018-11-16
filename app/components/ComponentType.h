@@ -14,14 +14,14 @@ enum Component_Type {
     currentControlledVoltageSource = 'H',
     currentSource = 'I',
     voltageSource = 'V',
-    ampOp = 'O',
-    logicAnd = ')',
-    logicNand = '(',
-    logicOr = '}',
-    logicNor = '{',
-    flipFlop = '%',
-    monostable = '@',
-    reset = '!'
+    ampOp = 'O'
+//    logicAnd = ')',
+//    logicNand = '(',
+//    logicOr = '}',
+//    logicNor = '{',
+//    flipFlop = '%',
+//    monostable = '@',
+//    reset = '!'
 };
 // commentary in the netlist starts with *, but since its not a component, it will not be described in this enum
 #endif //CKT_SIM_COMPONENTTYPE_H

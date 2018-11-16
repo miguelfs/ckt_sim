@@ -7,3 +7,15 @@
 AmpOp::AmpOp(std::string row, int quantityOfArguments) : Component(ampOp) {
 
 }
+
+void AmpOp::stampG(double **Gmatrix) {
+
+}
+
+void AmpOp::stampSolutionVector(double *solutionVector) {
+
+}
+
+void AmpOp::stampRightSideVector(double *rightSideVector) {
+
+}

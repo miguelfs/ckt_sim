@@ -11,12 +11,20 @@
 class Capacitor : public Component{
 
 public:
-    Capacitor(std::string row, int quantityOfArguments);
+    Capacitor(std::string row, int quantityOfArguments, double timeStep);
+    void stampG(double** Gmatrix) override;
+    void stampSolutionVector(double* solutionVector) override;
+    void stampRightSideVector(double* rightSideVector) override;
 
 private:
     double capacitance;
     int nodes[2];
     double initialCurrent;
+    double timeStep;
+
+
+    void isEqualsZero(double step);
+
 };
 
 

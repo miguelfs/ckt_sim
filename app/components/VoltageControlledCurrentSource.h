@@ -12,6 +12,9 @@ class VoltageControlledCurrentSource : public Component {
 
 public:
     VoltageControlledCurrentSource(std::string basic_string, int i);
+    void stampG(double** Gmatrix) override;
+    void stampSolutionVector(double* solutionVector) override;
+    void stampRightSideVector(double* rightSideVector) override;
 };
 
 

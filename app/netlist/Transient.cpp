@@ -11,7 +11,7 @@ Transient::Transient(std::string row, int quantityOfArguments) {
     splitRow(quantityOfArguments, std::move(row), arguments); //std::move to avoid unnecessary copies, only copy once
 
     this->finalTime = strtod(arguments[1].c_str(), nullptr);
-    this->step = strtod(arguments[2].c_str(), nullptr);
+    this->stepTime = strtod(arguments[2].c_str(), nullptr);
     this->stepsByTablePoint = stoi(arguments[4]);
     setInitialConfiguration(arguments[5]);
 }
@@ -33,3 +33,7 @@ void Transient::setInitialConfiguration(std::string argument) {
 }
 
 Transient::Transient() {}
+
+double Transient::getStepTime() {
+    return stepTime;
+}
