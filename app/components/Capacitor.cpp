@@ -17,13 +17,11 @@ Capacitor::Capacitor(std::string row, int quantityOfArguments, double timeStep) 
     initialCurrent = getInitialCurrent(arguments[4]);
     this->timeStep = timeStep;
 
-    std::cout << name << " " << nodes[0] << nodes[1] << " " << capacitance << " " << initialCurrent << std::endl;
-
+    std::cout << "name = " << name << ",  nodeA = " << nodes[0] << ", nodeB = " << nodes[1] <<
+              ", C = " << capacitance << "F, I(0) = " << initialCurrent << std::endl;
 }
 
 void Capacitor::stampG(double **G){
-    std::cout << "estampou capacitor";
-
     try {
         isEqualsZero(timeStep);
     } catch (char *errorToPrint) {
@@ -42,25 +40,6 @@ void Capacitor::stampG(double **G){
     GstampFor2x2Component(G, stamp, nodes);
 }
 
-//void Capacitor::stampGtest(int order, double G[order][order]){
-//
-//    try {
-//        isEqualsZero(timeStep);
-//    } catch (char *errorToPrint) {
-//        std::cout << errorToPrint;
-//    }
-//
-//    double conductance = capacitance / timeStep;
-//
-//    double stamp[2][2];
-//    stamp[0][0] = conductance ;
-//    stamp[0][1] = -1 * conductance;
-//    stamp[1][0] = -1 * conductance;
-//    stamp[1][1] = conductance;
-//
-//    //check for ground nodes
-//    GstampFor2x2Component(G, stamp, nodes);
-//}
 
 void Capacitor::stampRightSideVector(double *rightSideVector) {
 

@@ -7,7 +7,7 @@
 #include "Row.h"
 #include <iostream>
 
-Netlist::Netlist(std::string fileName) : quantityOfAuxiliarCurrents(0), quantityOfComponents(0) {
+Netlist::Netlist(std::string fileName) : quantityOfAuxiliarCurrents(0), quantityOfComponents(0), systemOfEquations() {
     FileReader *fileReader = new FileReader(std::move(fileName));
     string *text = fileReader->getTextLines();
     int numberOfLines = fileReader->numberOfLines;
@@ -15,11 +15,14 @@ Netlist::Netlist(std::string fileName) : quantityOfAuxiliarCurrents(0), quantity
     quantityOfNodes = fileReader->getNumberOfNodes();
 
     setTransient(text, numberOfLines);
-    initializeComponents(text, numberOfLines, 0);
+    initializeComponents(text, numberOfLines, this->transient.getTimeStep());
+    systemOfEquations.setOrderOfMatrixG(quantityOfNodes + quantityOfAuxiliarCurrents + 1);
 
-    orderOfMatrixG = quantityOfNodes + quantityOfAuxiliarCurrents;
+    //  orderOfMatrixG = quantityOfNodes + quantityOfAuxiliarCurrents + 1;
     //quantity of auxiliar currents is set in initializeComponents method
-    initializeGMatrix();
+
+    //initializeGMatrix();
+    systemOfEquations.initializeGMatrix();
 }
 
 void Netlist::setTransient(const string *text, int numberOfLines) {
@@ -33,10 +36,10 @@ void Netlist::initializeComponents(std::string *text, int numberOfLines, double 
     int j = 0;
     for (int i = 1; i < numberOfLines - 1; i++) {
         Row row(text[i]);
-        Component component = * row.getComponent(timeStep, quantityOfNodes + quantityOfAuxiliarCurrents + 1);
+        Component *component = row.getComponent(timeStep, quantityOfNodes + quantityOfAuxiliarCurrents + 1);
         components.push_back(component);
         quantityOfComponents++;
-        if (isAuxiliarEquationNeeded(components[j].getComponentType())) {
+        if (isAuxiliarEquationNeeded(components[j]->getComponentType())) {
             quantityOfAuxiliarCurrents++;
         } //auxiliar current equation for ampOps, inductors and voltage source
         j++;
@@ -63,21 +66,23 @@ void Netlist::initializeGMatrix() {
 
 
 void ::Netlist::buildThatG() {
-    for (int i = 0; i < quantityOfComponents; i++)
-        components[i].stampG(GMatrix);
-
-    printThatG();
+    systemOfEquations.buildThatG(quantityOfComponents, components);
+//    for (int i = 0; i < quantityOfComponents; i++)
+//        components[i]->stampG(GMatrix);
+//
+//    printThatG();
 }
 
-void ::Netlist::printThatG() {
-    for (int i = 0; i < orderOfMatrixG; i++) {
-        std::cout << "[ ";
-        for (int j = 0; j < orderOfMatrixG; j++)
-            std::cout << GMatrix[i][j] << " ";
-        std::cout << "]" << std::endl;
-    }
-    std::cout << std::endl;
-}
+//void ::Netlist::printThatG() {
+//    std::cout << std::endl;
+//    for (int i = 0; i < orderOfMatrixG; i++) {
+//        std::cout << "[ ";
+//        for (int j = 0; j < orderOfMatrixG; j++)
+//            std::cout << GMatrix[i][j] << "\t\t\t\t";
+//        std::cout << "]" << std::endl;
+//    }
+//    std::cout << std::endl;
+//}
 
 
 //void Netlist::generate_incidence_matrix(std::string *text_lines, int number_of_lines) {

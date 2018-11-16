@@ -9,6 +9,7 @@
 #include <vector>
 #include "../components/Component.h"
 #include "Transient.h"
+#include "SystemOfEquations.h"
 
 class Netlist {
 public:
@@ -18,13 +19,13 @@ public:
     void buildThatG();
 
 private:
-    std::vector<Component> components;
+    std::vector<Component *> components;
     double** GMatrix;
     double* solutionsVector;
     double* rightSideVector;
+    SystemOfEquations systemOfEquations;
 
 public:
-    Component *getComponents();
     void initializeGMatrix();
 
 private:

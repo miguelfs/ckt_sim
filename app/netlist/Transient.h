@@ -17,7 +17,7 @@ class Transient {
 
 private:
     double finalTime;
-    double stepTime;
+    double timeStep;
 
 private:
     int stepsByTablePoint;
@@ -33,7 +33,7 @@ public:
 
     Transient();
 
-    double getStepTime();
+    double getTimeStep();
 
 
 };

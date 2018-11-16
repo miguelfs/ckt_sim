@@ -17,7 +17,9 @@ Inductor::Inductor(std::string row, int quantityOfArguments, double timeStep, in
     initialCurrent = getInitialCurrent(arguments[4]);
     this->timeStep = timeStep;
 
-  std::cout << name << " " << nodes[0] << nodes[1] << " " << inductance << " " << initialCurrent << std::endl;
+    std::cout << "name = " << name << ",  nodeA = " << nodes[0] << ", nodeB = " << nodes[1] << ", wire = " << wire <<
+              ", L = " << inductance << "H, I(0) = " << initialCurrent << ", timeStep = " << this->timeStep
+              << std::endl;
 }
 
 void Inductor::stampG(double **G) {
@@ -39,28 +41,30 @@ void Inductor::stampG(double **G) {
     stamp[2][0] = -1.0;
     stamp[2][1] = 1.0;
     stamp[2][2] = conductance;
-    //check for ground nodes
+//
+//    for (int i = 0; i < 2; i++) {
+//        for (int j = 0; j < 2; j++) {
+//            if ((nodes[i] != 0) && (nodes[j] != 0)) {
+//                G[nodes[i] - 1][nodes[j] - 1] += stamp[i][j];
+//            }
+//        }
+//        if (nodes[i] != 0) {
+//            G[nodes[i]-1][wire-1] += stamp[i][2];
+//            G[wire-1][nodes[1]-1] += stamp[2][i];
+//        }
+//    }
+//    G[wire-1][wire-1] += stamp[2][2];
 
-    for (int i; i < 2; i++) {
-        for (int j; j < 2; j++) {
-            if (nodes[i] != 0 && nodes[j] != 0)
-                G[nodes[i]][nodes[j]] += stamp[i][j];
-        }
-        if (nodes[i] != 0) {
-            G[nodes[i]][wire] += stamp[i][2];
-            G[wire][nodes[1]] += stamp[2][i];
-        }
-    }
+
+    G[nodes[0]][nodes[0]] += stamp[0][0];
+    G[nodes[0]][nodes[1]] += stamp[0][1];
+    G[nodes[0]][wire] += stamp[0][2];
+    G[nodes[1]][nodes[0]] += stamp[1][0];
+    G[nodes[1]][nodes[1]] += stamp[1][1];
+    G[nodes[1]][wire] += stamp[1][2];
+    G[wire][nodes[0]] += stamp[2][0];
+    G[wire][nodes[1]] += stamp[2][1];
     G[wire][wire] += stamp[2][2];
-//    G[nodes[0]][nodes[0]] += stamp[0][0];
-//    G[nodes[0]][nodes[1]] += stamp[0][1];
-//    G[nodes[0]][wire] += stamp[0][2];
-//    G[nodes[1]][nodes[0]] += stamp[1][0];
-//    G[nodes[1]][nodes[1]] += stamp[1][1];
-//    G[nodes[1]][wire] += stamp[1][2];
-//    G[wire][nodes[0]] += stamp[2][0];
-//    G[wire][nodes[1]] += stamp[2][1];
-//    G[wire][wire] += stamp[2][2];
 }
 
 void stampThatMatrix(double **G){
