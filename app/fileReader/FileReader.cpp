@@ -30,7 +30,6 @@ int FileReader::getNumberOfLines(string fileName) {
     return numberOfLines;
 }
 
-
 string* FileReader::getTextLines() {
     return textLines;
 }

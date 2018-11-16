@@ -10,13 +10,8 @@
 
 class Resistor: public Component{
 public:
-    Resistor(char*, int[]);
 
     Resistor(std::string row, int quantityOfArguments);
-
-    explicit Resistor(std::string row);
-
-    Resistor(char *name, int *nodes, double value);
 
     double resistance;
 

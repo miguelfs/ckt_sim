@@ -12,10 +12,7 @@
  public:
 
 
-     //se G[a][b], a linha, b coluna
      virtual void stampG(double** G);
-
-  //   virtual void stampGtest(int order, double G[][order]);
 
  private:
      Component_Type type;
@@ -30,7 +27,6 @@
      void splitRow(int size, std::string row, std::string *arr);
      double getInitialCurrent(std::string initialCurrent);
 
-     //conductanceMatrix * unknownValues = RightHandSideMatrix
 
      virtual void stampSolutionVector(double* solutionVector) ;
 

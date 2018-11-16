@@ -56,7 +56,6 @@ Component * Row::getComponent(double timeStep, int wire) {
 //        case reset:
 //            return new Reset(stringRow, 4);
 
-
         default: {
             throw std::invalid_argument( "Received invalid component:\n\n" + stringRow +
                                                  "\nPlease be sure your component belongs to ComponentType.h" );

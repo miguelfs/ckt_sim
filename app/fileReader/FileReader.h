@@ -24,8 +24,6 @@ public:
 private:
     string* textLines;
 
-    int getNumberOfLines(ifstream);
-
     int getNumberOfLines(string fileName);
 
 };

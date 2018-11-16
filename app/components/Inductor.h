@@ -21,11 +21,8 @@ private:
     double timeStep;
 
     void stampG(double** Gmatrix) override;
-    void stampGtest(int order, double G[order][order]);
-
     void stampSolutionVector(double* solutionVector) override;
     void stampRightSideVector(double* rightSideVector) override;
-
     void isEqualsZero(double number);
 };
 

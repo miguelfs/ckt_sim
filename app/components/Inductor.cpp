@@ -41,20 +41,6 @@ void Inductor::stampG(double **G) {
     stamp[2][0] = -1.0;
     stamp[2][1] = 1.0;
     stamp[2][2] = conductance;
-//
-//    for (int i = 0; i < 2; i++) {
-//        for (int j = 0; j < 2; j++) {
-//            if ((nodes[i] != 0) && (nodes[j] != 0)) {
-//                G[nodes[i] - 1][nodes[j] - 1] += stamp[i][j];
-//            }
-//        }
-//        if (nodes[i] != 0) {
-//            G[nodes[i]-1][wire-1] += stamp[i][2];
-//            G[wire-1][nodes[1]-1] += stamp[2][i];
-//        }
-//    }
-//    G[wire-1][wire-1] += stamp[2][2];
-
 
     G[nodes[0]][nodes[0]] += stamp[0][0];
     G[nodes[0]][nodes[1]] += stamp[0][1];
@@ -65,10 +51,6 @@ void Inductor::stampG(double **G) {
     G[wire][nodes[0]] += stamp[2][0];
     G[wire][nodes[1]] += stamp[2][1];
     G[wire][wire] += stamp[2][2];
-}
-
-void stampThatMatrix(double **G){
-
 }
 
 void Inductor::stampSolutionVector(double *solutionVector) {
@@ -84,37 +66,3 @@ void Inductor::isEqualsZero(double number) {
         throw ("timeStep equals zero, divide by timeStep not allowed");
 
 }
-
-//void Inductor::stampGtest(int order, double G[order][order]) {
-//    try {
-//        isEqualsZero(timeStep);
-//    } catch (char *errorToPrint) {
-//        std::cout << errorToPrint;
-//    }
-//
-//    double conductance =  timeStep/inductance;
-//
-//    double stamp[3][3];
-//    stamp[0][0] = 0.0;
-//    stamp[0][1] = 0.0;
-//    stamp[0][2] = 1.0;
-//    stamp[1][0] = 0.0;
-//    stamp[1][1] = 0.0;
-//    stamp[1][2] = -1.0;
-//    stamp[2][0] = -1.0;
-//    stamp[2][1] = 1.0;
-//    stamp[2][2] = conductance;
-//    //check for ground nodes
-//
-//    for (int i; i < 2; i++) {
-//        for (int j; j < 2; j++) {
-//            if (nodes[i] != 0 && nodes[j] != 0)
-//                G[nodes[i]][nodes[j]] += stamp[i][j];
-//        }
-//        if (nodes[i] != 0) {
-//            G[nodes[i]][wire] += stamp[i][2];
-//            G[wire][nodes[1]] += stamp[2][i];
-//        }
-//    }
-//    G[wire][wire] += stamp[2][2];
-//}

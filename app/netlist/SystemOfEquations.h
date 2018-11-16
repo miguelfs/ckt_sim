@@ -21,12 +21,7 @@ public:
 private:
     int orderOfMatrixG;
 
-
     void printThatG();
-
-    //   void initializeGMatrix(double **gMatrix, int order);
-
-    //   void setGMatrixClearingNodeEquations(double **);
 };
 
 

@@ -36,7 +36,6 @@ void Capacitor::stampG(double **G){
     stamp[1][0] = -1 * conductance;
     stamp[1][1] = conductance;
 
-    //check for ground nodes
     GstampFor2x2Component(G, stamp, nodes);
 }
 
