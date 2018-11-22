@@ -11,10 +11,15 @@
 class VoltageSource : public Component {
 
 public:
-    VoltageSource(std::string basic_string, int i);
-    void stampG(double** Gmatrix) override;
+
+    VoltageSource(std::string row, int quantityOfArguments, int wire);
+
+    void stampG(double **G) override;
     void stampSolutionVector(double* solutionVector) override;
     void stampRightSideVector(double* rightSideVector) override;
+
+private:
+    int wire;
 };
 
 

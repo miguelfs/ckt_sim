@@ -38,7 +38,7 @@ Component * Row::getComponent(double timeStep, int wire) {
         case currentSource :
             return new CurrentSource(stringRow, 4);
         case voltageSource :
-            return new VoltageSource(stringRow, 4);
+            return new VoltageSource(stringRow, 4, wire);
         case ampOp :
             return new AmpOp(stringRow, 5, wire);
 //        case logicAnd:
