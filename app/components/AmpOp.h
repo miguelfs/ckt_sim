@@ -10,11 +10,15 @@
 
 class AmpOp : public Component{
 
-public:
+private:
 
-    AmpOp(std::string row, int quantityOfArguments);
+    int nodes[4];
+    int wire;
+
 public:
-    void stampG(double** Gmatrix) override;
+    AmpOp(std::string row, int quantityOfArguments, int wire);
+
+    void stampG(double **G) override;
     void stampSolutionVector(double* solutionVector) override;
     void stampRightSideVector(double* rightSideVector) override;
 };

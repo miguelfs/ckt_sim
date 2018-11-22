@@ -51,18 +51,18 @@ bool Netlist::isAuxiliarEquationNeeded(Component_Type type) {
            type == currentControlledCurrentSource || type == currentControlledVoltageSource;
 }
 
-void Netlist::initializeGMatrix() {
-    GMatrix = (double **) malloc(orderOfMatrixG * sizeof(double *));
-    for (int i = 0; i < orderOfMatrixG; i++)
-        GMatrix[i] = (double *) malloc(orderOfMatrixG * sizeof(double));
-
-
-    for (int i = 0; i < orderOfMatrixG; i++)
-        for (int j = 0; j < orderOfMatrixG; j++)
-            GMatrix[i][j] = 0.0;
-
-  //  printThatG();
-}
+//void Netlist::initializeGMatrix() {
+//    GMatrix = (double **) malloc(orderOfMatrixG * sizeof(double *));
+//    for (int i = 0; i < orderOfMatrixG; i++)
+//        GMatrix[i] = (double *) malloc(orderOfMatrixG * sizeof(double));
+//
+//
+//    for (int i = 0; i < orderOfMatrixG; i++)
+//        for (int j = 0; j < orderOfMatrixG; j++)
+//            GMatrix[i][j] = 0.0;
+//
+//  //  printThatG();
+//}
 
 
 void ::Netlist::buildThatG() {
