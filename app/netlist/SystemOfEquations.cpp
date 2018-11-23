@@ -3,6 +3,7 @@
 //
 
 #include <cstdlib>
+#include <iomanip>
 #include <vector>
 #include <iostream>
 #include "SystemOfEquations.h"
@@ -32,11 +33,15 @@ void SystemOfEquations::buildThatG(int quantityOfComponents, std::vector<Compone
 }
 
 void SystemOfEquations::printThatG() {
-    std::cout << std::endl;
+    std::cout << std::fixed << std::endl;
     for (int i = 0; i < orderOfMatrixG; i++) {
         std::cout << "[ ";
-        for (int j = 0; j < orderOfMatrixG; j++)
-            std::cout << G[i][j] << "\t\t\t\t";
+        for (int j = 0; j < orderOfMatrixG; j++) {
+            if (G[i][j] > 0 || G[i][j] == 0)
+                std::cout << std::setprecision(3) << " " << G[i][j] << "\t\t\t\t";
+            else
+                std::cout << std::setprecision(3) << G[i][j] << "\t\t\t\t";
+        }
         std::cout << "]" << std::endl;
     }
     std::cout << std::endl;
