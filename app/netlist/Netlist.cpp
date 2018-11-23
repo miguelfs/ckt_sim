@@ -73,6 +73,10 @@ void ::Netlist::buildThatG() {
 //    printThatG();
 }
 
+void Netlist::doOperatingPointIfNeeded() {
+
+}
+
 //void ::Netlist::printThatG() {
 //    std::cout << std::endl;
 //    for (int i = 0; i < orderOfMatrixG; i++) {

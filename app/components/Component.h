@@ -25,7 +25,8 @@
      std::string name;
 
      void splitRow(int size, std::string row, std::string *arr);
-     double getInitialCurrent(std::string initialCurrent);
+
+     double getInitialCondition(std::string initialCondition);
 
 
      virtual void stampSolutionVector(double* solutionVector) ;

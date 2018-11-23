@@ -14,13 +14,14 @@ Capacitor::Capacitor(std::string row, int quantityOfArguments, double timeStep) 
     nodes[0] = stoi(arguments[1]);
     nodes[1] = stoi(arguments[2]);
     capacitance = strtod(arguments[3].c_str(), nullptr);
-    initialCurrent = getInitialCurrent(arguments[4]);
+    initialCurrent = getInitialCondition(arguments[4]);
     this->timeStep = timeStep;
 
     std::cout << "name = " << name << ",  nodeA = " << nodes[0] << ", nodeB = " << nodes[1] <<
               ", C = " << capacitance << "F, I(0) = " << initialCurrent << std::endl;
 }
 
+//quando newton-raphson, matriz G muda POIS nao linear.
 void Capacitor::stampG(double **G){
     try {
         isEqualsZero(timeStep);

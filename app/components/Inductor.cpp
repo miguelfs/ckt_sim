@@ -14,7 +14,7 @@ Inductor::Inductor(std::string row, int quantityOfArguments, double timeStep, in
     nodes[1] = stoi(arguments[2]);
     this->wire = wire;
     inductance = strtod(arguments[3].c_str(), nullptr);
-    initialCurrent = getInitialCurrent(arguments[4]);
+    initialCurrent = getInitialCondition(arguments[4]);
     this->timeStep = timeStep;
 
     std::cout << "name = " << name << ",  nodeA = " << nodes[0] << ", nodeB = " << nodes[1] << ", wire = " << wire <<

@@ -26,9 +26,11 @@ void Component::splitRow(int quantityOfArguments, string row, std::string* argum
 
 }
 
-double Component::getInitialCurrent(std::string initialCurrent){
-    if (initialCurrent.length() > 0)
-        return  strtod(initialCurrent.erase(0, 3).c_str(), nullptr);
+double Component::getInitialCondition(std::string initialCondition) {
+    if (getComponentType() != capacitor && getComponentType() != inductor)
+        return 0;
+    if (initialCondition.length() > 0)
+        return strtod(initialCondition.erase(0, 3).c_str(), nullptr);
     return 0;
 }
 

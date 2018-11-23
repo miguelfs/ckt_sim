@@ -18,6 +18,8 @@ public:
 
     void buildThatG();
 
+    void doOperatingPointIfNeeded();
+
 private:
     std::vector<Component *> components;
     double** GMatrix;
@@ -38,6 +40,11 @@ private:
     bool isAuxiliarEquationNeeded(Component_Type type);
 
     void setTransient(const std::string *text, int numberOfLines);
+
+
+
+
+    //PRA SER PONTO DE OPERACAO
 };
 
 
