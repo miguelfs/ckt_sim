@@ -7,9 +7,13 @@
 
 
 #include "../components/Component.h"
+#include "InitializationMethod.h"
 
 class SystemOfEquations {
 public:
+
+    SystemOfEquations();
+
     double **G;
 
     void setOrderOfMatrixG(int orderOfMatrixG);
@@ -18,10 +22,14 @@ public:
 
     void buildThatG(int quantityOfComponents, std::vector<Component *> &components);
 
+    void isOperatingPointNeeded(bool i);
+
 private:
     int orderOfMatrixG;
 
     void printThatG();
+
+    InitializationMethod initializationMethod;
 };
 
 

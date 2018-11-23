@@ -20,6 +20,7 @@
      Component_Type getComponentType() const;
      Component();
 
+     virtual bool doesHaveInitialCondition();
  protected:
      int *nodes;
      std::string name;
@@ -36,6 +37,7 @@
      Component(Component_Type type);
 
      void GstampFor2x2Component(double **G, double stamp[2][2], int *nodes);
+
  };
 
 #endif //CKT_SIM_COMPONENT_H

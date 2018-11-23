@@ -39,9 +39,13 @@ void Netlist::initializeComponents(std::string *text, int numberOfLines, double 
         Component *component = row.getComponent(timeStep, quantityOfNodes + quantityOfAuxiliarCurrents + 1);
         components.push_back(component);
         quantityOfComponents++;
-        if (isAuxiliarEquationNeeded(components[j]->getComponentType())) {
+
+        if (isAuxiliarEquationNeeded(components[j]->getComponentType()))
             quantityOfAuxiliarCurrents++;
-        } //auxiliar current equation for ampOps, inductors and voltage source
+
+        if (components[j]->doesHaveInitialCondition())
+            systemOfEquations.isOperatingPointNeeded(false);
+
         j++;
     }
 }

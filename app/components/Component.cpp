@@ -34,6 +34,12 @@ double Component::getInitialCondition(std::string initialCondition) {
     return 0;
 }
 
+//function overwritten in capacitor and inductor
+bool Component::doesHaveInitialCondition() {
+    return false;
+}
+
+
 void Component::GstampFor2x2Component(double **G, double stamp[2][2], int *nodes){
 
     G[nodes[0]][nodes[0]] += stamp[0][0];

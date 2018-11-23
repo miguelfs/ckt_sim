@@ -16,10 +16,12 @@ public:
     void stampSolutionVector(double* solutionVector) override;
     void stampRightSideVector(double* rightSideVector) override;
 
+    bool doesHaveInitialCondition() override;
+
 private:
     double capacitance;
     int nodes[2];
-    double initialCurrent;
+    double initialVoltage;
     double timeStep;
 
 

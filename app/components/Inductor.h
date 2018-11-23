@@ -13,6 +13,8 @@ class Inductor : public Component{
 public:
     Inductor(std::string row, int i, double timeStep, int wire);
 
+    bool doesHaveInitialCondition() override;
+
 private:
     double inductance;
     int nodes[2];

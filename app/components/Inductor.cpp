@@ -66,3 +66,7 @@ void Inductor::isEqualsZero(double number) {
         throw ("timeStep equals zero, divide by timeStep not allowed");
 
 }
+
+bool Inductor::doesHaveInitialCondition() {
+    return initialCurrent != 0;
+}

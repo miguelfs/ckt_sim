@@ -47,3 +47,14 @@ void SystemOfEquations::printThatG() {
     std::cout << std::endl;
 }
 
+void SystemOfEquations::isOperatingPointNeeded(bool i) {
+    if (i == false)
+        initializationMethod = initialConditions;
+    else
+        initializationMethod = operatingPoint;
+}
+
+SystemOfEquations::SystemOfEquations() {
+    initializationMethod = operatingPoint;
+}
+

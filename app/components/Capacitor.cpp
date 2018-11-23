@@ -14,11 +14,11 @@ Capacitor::Capacitor(std::string row, int quantityOfArguments, double timeStep) 
     nodes[0] = stoi(arguments[1]);
     nodes[1] = stoi(arguments[2]);
     capacitance = strtod(arguments[3].c_str(), nullptr);
-    initialCurrent = getInitialCondition(arguments[4]);
+    initialVoltage = getInitialCondition(arguments[4]);
     this->timeStep = timeStep;
 
     std::cout << "name = " << name << ",  nodeA = " << nodes[0] << ", nodeB = " << nodes[1] <<
-              ", C = " << capacitance << "F, I(0) = " << initialCurrent << std::endl;
+              ", C = " << capacitance << "F, I(0) = " << initialVoltage << std::endl;
 }
 
 //quando newton-raphson, matriz G muda POIS nao linear.
@@ -53,4 +53,8 @@ void Capacitor::isEqualsZero(double number) {
     if (number == 0)
         throw ("timeStep equals zero, divide by timeStep not allowed");
 
+}
+
+bool Capacitor::doesHaveInitialCondition() {
+    return initialVoltage != 0;
 }
