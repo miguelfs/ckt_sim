@@ -32,6 +32,7 @@ void SystemOfEquations::buildThatG(int quantityOfComponents, std::vector<Compone
     printThatG();
 }
 
+
 void SystemOfEquations::printThatG() {
     std::cout << std::fixed << std::endl;
     for (int i = 0; i < orderOfMatrixG; i++) {
@@ -49,12 +50,24 @@ void SystemOfEquations::printThatG() {
 
 void SystemOfEquations::isOperatingPointNeeded(bool i) {
     if (i == false)
-        initializationMethod = initialConditions;
+        operationMethod = initialConditions;
     else
-        initializationMethod = operatingPoint;
+        operationMethod = operatingPoint;
+}
+
+void SystemOfEquations::initializeRSVector() {
+    RightSideVector = (double *) malloc(orderOfMatrixG * sizeof(double));
+
+    for (int i = 0; i < orderOfMatrixG; i++)
+        RightSideVector[i] = 0.0;
+}
+
+void SystemOfEquations::buildThatRSVector(int quantityOfComponents, std::vector<Component *> &components) {
+    for (int i = 0; i < quantityOfComponents; i++)
+        components[i]->stampRightSideVector(RightSideVector, operationMethod);
 }
 
 SystemOfEquations::SystemOfEquations() {
-    initializationMethod = operatingPoint;
+    operationMethod = operatingPoint;
 }
 

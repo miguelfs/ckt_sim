@@ -6,6 +6,7 @@
 #include <vector>
 #include <iostream>
 #include "Component.h"
+#include "../netlist/OperationMethod.h"
 
 using namespace std;
 
@@ -64,7 +65,7 @@ void Component::stampSolutionVector(double *solutionVector) {
 
 }
 
-void Component::stampRightSideVector(double *rightSideVector) {
+void Component::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
 
 }
 

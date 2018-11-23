@@ -3,6 +3,7 @@
 //
 
 #include "AmpOp.h"
+#include "../netlist/OperationMethod.h"
 
 AmpOp::AmpOp(std::string row, int quantityOfArguments, int wire) : Component(ampOp) {
 
@@ -29,6 +30,6 @@ void AmpOp::stampSolutionVector(double *solutionVector) {
 
 }
 
-void AmpOp::stampRightSideVector(double *rightSideVector) {
+void AmpOp::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
 
 }

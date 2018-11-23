@@ -3,6 +3,7 @@
 //
 
 #include "Capacitor.h"
+#include "../netlist/OperationMethod.h"
 #include <iostream>
 
 //TODO: ANALISE DE PONTO DE OPERACAO, 10 ELEVADO A 9 = MUITO GRANDE, 10 A MENOS 9 = MUITO PEQUENO
@@ -41,7 +42,7 @@ void Capacitor::stampG(double **G){
 }
 
 
-void Capacitor::stampRightSideVector(double *rightSideVector) {
+void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
 
 }
 

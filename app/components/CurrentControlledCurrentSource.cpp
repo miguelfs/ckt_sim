@@ -3,6 +3,7 @@
 //
 
 #include "CurrentControlledCurrentSource.h"
+#include "../netlist/OperationMethod.h"
 
 CurrentControlledCurrentSource::CurrentControlledCurrentSource(std::string row, int i) : Component(currentControlledCurrentSource){
 
@@ -16,6 +17,6 @@ void CurrentControlledCurrentSource::stampSolutionVector(double *solutionVector)
 
 }
 
-void CurrentControlledCurrentSource::stampRightSideVector(double *rightSideVector) {
+void CurrentControlledCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
 
 }

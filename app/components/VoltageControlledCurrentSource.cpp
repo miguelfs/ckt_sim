@@ -3,6 +3,7 @@
 //
 
 #include "VoltageControlledCurrentSource.h"
+#include "../netlist/OperationMethod.h"
 
 VoltageControlledCurrentSource::VoltageControlledCurrentSource(std::string row, int i) :Component(voltageControlledCurrentSource) {
 
@@ -16,6 +17,6 @@ void VoltageControlledCurrentSource::stampSolutionVector(double *solutionVector)
 
 }
 
-void VoltageControlledCurrentSource::stampRightSideVector(double *rightSideVector) {
+void VoltageControlledCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
 
 }

@@ -7,6 +7,7 @@
 
 
 #include "Component.h"
+#include "../netlist/OperationMethod.h"
 
 class Inductor : public Component{
 
@@ -24,7 +25,8 @@ private:
 
     void stampG(double** Gmatrix) override;
     void stampSolutionVector(double* solutionVector) override;
-    void stampRightSideVector(double* rightSideVector) override;
+
+    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
     void isEqualsZero(double number);
 };
 

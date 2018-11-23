@@ -7,6 +7,7 @@
 
 
 #include "Component.h"
+#include "../netlist/OperationMethod.h"
 
 class Resistor: public Component{
 public:
@@ -17,7 +18,8 @@ public:
 
     void stampG(double** Gmatrix) override;
     void stampSolutionVector(double* solutionVector) override;
-    void stampRightSideVector(double* rightSideVector) override;
+
+    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
 };
 
 

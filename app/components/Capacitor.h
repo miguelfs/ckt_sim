@@ -7,6 +7,7 @@
 
 
 #include "Component.h"
+#include "../netlist/OperationMethod.h"
 
 class Capacitor : public Component{
 
@@ -14,7 +15,8 @@ public:
     Capacitor(std::string row, int quantityOfArguments, double timeStep);
     void stampG(double** Gmatrix) override;
     void stampSolutionVector(double* solutionVector) override;
-    void stampRightSideVector(double* rightSideVector) override;
+
+    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
 
     bool doesHaveInitialCondition() override;
 

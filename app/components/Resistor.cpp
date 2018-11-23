@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include "Resistor.h"
+#include "../netlist/OperationMethod.h"
 
 
 Resistor::Resistor(std::string row, int quantityOfArguments) : Component(resistor) {
@@ -36,7 +37,7 @@ void Resistor::stampSolutionVector(double *solutionVector) {
 //do nothing
 }
 
-void Resistor::stampRightSideVector(double *rightSideVector) {
+void Resistor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
     //do nothing
 }
     

@@ -7,12 +7,15 @@
 
 #include <string>
 #include "ComponentType.h"
+#include "../netlist/OperationMethod.h"
 
- class Component {
+class Component {
  public:
 
 
      virtual void stampG(double** G);
+
+    virtual void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod);
 
  private:
      Component_Type type;
@@ -31,8 +34,6 @@
 
 
      virtual void stampSolutionVector(double* solutionVector) ;
-
-     virtual void stampRightSideVector(double* rightSideVector);
 
      Component(Component_Type type);
 

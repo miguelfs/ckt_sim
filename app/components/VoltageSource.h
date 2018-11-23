@@ -7,6 +7,7 @@
 
 
 #include "Component.h"
+#include "../netlist/OperationMethod.h"
 
 class VoltageSource : public Component {
 
@@ -16,7 +17,8 @@ public:
 
     void stampG(double **G) override;
     void stampSolutionVector(double* solutionVector) override;
-    void stampRightSideVector(double* rightSideVector) override;
+
+    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
 
 private:
     int wire;

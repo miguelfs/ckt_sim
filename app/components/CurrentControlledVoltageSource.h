@@ -7,6 +7,7 @@
 
 
 #include "Component.h"
+#include "../netlist/OperationMethod.h"
 
 class CurrentControlledVoltageSource  : public Component{
 
@@ -14,7 +15,8 @@ public:
     CurrentControlledVoltageSource(std::string row, int i);
     void stampG(double** Gmatrix) override;
     void stampSolutionVector(double* solutionVector) override;
-    void stampRightSideVector(double* rightSideVector) override;
+
+    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
 };
 
 

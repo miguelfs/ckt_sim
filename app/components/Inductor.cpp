@@ -3,6 +3,7 @@
 //
 
 #include "Inductor.h"
+#include "../netlist/OperationMethod.h"
 #include <iostream>
 
 Inductor::Inductor(std::string row, int quantityOfArguments, double timeStep, int wire) : Component(inductor){
@@ -57,7 +58,7 @@ void Inductor::stampSolutionVector(double *solutionVector) {
 
 }
 
-void Inductor::stampRightSideVector(double *rightSideVector) {
+void Inductor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
 
 }
 

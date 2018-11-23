@@ -3,6 +3,7 @@
 //
 
 #include "VoltageSource.h"
+#include "../netlist/OperationMethod.h"
 
 VoltageSource::VoltageSource(std::string row, int quantityOfArguments, int wire) : Component(voltageSource) {
 
@@ -31,6 +32,6 @@ void VoltageSource::stampSolutionVector(double *solutionVector) {
 
 }
 
-void VoltageSource::stampRightSideVector(double *rightSideVector) {
+void VoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
 
 }

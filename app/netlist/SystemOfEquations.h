@@ -7,7 +7,7 @@
 
 
 #include "../components/Component.h"
-#include "InitializationMethod.h"
+#include "OperationMethod.h"
 
 class SystemOfEquations {
 public:
@@ -15,6 +15,8 @@ public:
     SystemOfEquations();
 
     double **G;
+
+    double *RightSideVector;
 
     void setOrderOfMatrixG(int orderOfMatrixG);
 
@@ -29,7 +31,13 @@ private:
 
     void printThatG();
 
-    InitializationMethod initializationMethod;
+    OperationMethod operationMethod;
+
+    void setStampsForInitialCondition(int quantityOfComponents, std::vector<Component *> &components);
+
+    void initializeRSVector();
+
+    void buildThatRSVector(int quantityOfComponents, std::vector<Component *> &components);
 };
 
 

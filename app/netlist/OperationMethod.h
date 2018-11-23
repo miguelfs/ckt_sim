@@ -5,8 +5,9 @@
 #ifndef CKT_SIM_INITIALIZATIONMETHOD_H
 #define CKT_SIM_INITIALIZATIONMETHOD_H
 
-enum InitializationMethod {
+enum OperationMethod {
     operatingPoint,
-    initialConditions
+    initialConditions,
+    transient
 };
 #endif //CKT_SIM_INITIALIZATIONMETHOD_H
