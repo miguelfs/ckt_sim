@@ -7,7 +7,6 @@
 #include <vector>
 #include <iostream>
 #include "SystemOfEquations.h"
-#include "LUDecomposition.h"
 #include "GaussDecomposition.h"
 
 void SystemOfEquations::setOrderOfMatrixG(int orderOfMatrixG) {
