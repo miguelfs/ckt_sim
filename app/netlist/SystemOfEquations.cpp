@@ -29,8 +29,6 @@ void SystemOfEquations::buildThatG(int quantityOfComponents, std::vector<Compone
 
     for (int i = 0; i < quantityOfComponents; i++)
         components[i]->stampG(G, transient);
-
-    // printThatG();
 }
 
 
@@ -86,7 +84,6 @@ void SystemOfEquations::initializeSolutionsVector() {
 void SystemOfEquations::buildThatRSVector(int quantityOfComponents, std::vector<Component *> &components) {
     for (int i = 0; i < quantityOfComponents; i++)
         components[i]->stampRightSideVector(RHSVector, operationMethod);
-    //  printThatRHS();
 }
 
 SystemOfEquations::SystemOfEquations() {
@@ -94,11 +91,6 @@ SystemOfEquations::SystemOfEquations() {
 }
 
 void SystemOfEquations::solveSystem() {
-
-
-    // eliminateGroundVariables(G, RHSVector, orderOfMatrixG);
-
-    // orderOfMatrixG--;
 
     printThatG();
 
@@ -110,14 +102,6 @@ void SystemOfEquations::solveSystem() {
     printThatG();
 
     printThatRHS();
-
-    orderOfMatrixG++;
-
-    //  printThatG();
-    //  G = G_buffer;
-    // printThatG();
-
-    //  luDecomposition.LUPSolve(G_buffer, p, RHSVector, order_buffer, SolutionVector);
 
 }
 
