@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 01/12/17.
+// Created by Miguel Sousa on 01/11/18.
 //
 
 #ifndef CKT_SIM_NETLIST_H
@@ -18,7 +18,12 @@ public:
 
     void buildThatG();
 
+    void buildThatRSVector();
+
+
     void doOperatingPointIfNeeded();
+
+    void solveSystem();
 
 private:
     std::vector<Component *> components;
@@ -41,10 +46,6 @@ private:
 
     void setTransient(const std::string *text, int numberOfLines);
 
-
-
-
-    //PRA SER PONTO DE OPERACAO
 };
 
 

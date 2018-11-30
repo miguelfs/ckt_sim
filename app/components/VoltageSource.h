@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #ifndef CKT_SIM_VOLTAGESOURCE_H
@@ -15,7 +15,7 @@ public:
 
     VoltageSource(std::string row, int quantityOfArguments, int wire);
 
-    void stampG(double **G) override;
+    void stampG(double **G, OperationMethod operationMethod) override;
     void stampSolutionVector(double* solutionVector) override;
 
     void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;

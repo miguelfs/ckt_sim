@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #ifndef CKT_SIM_CAPACITOR_H
@@ -13,7 +13,8 @@ class Capacitor : public Component{
 
 public:
     Capacitor(std::string row, int quantityOfArguments, double timeStep);
-    void stampG(double** Gmatrix) override;
+
+    void stampG(double **Gmatrix, OperationMethod operationMethod) override;
     void stampSolutionVector(double* solutionVector) override;
 
     void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;

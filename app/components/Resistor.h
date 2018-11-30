@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #ifndef CKT_SIM_RESISTOR_H
@@ -16,7 +16,7 @@ public:
 
     double resistance;
 
-    void stampG(double** Gmatrix) override;
+    void stampG(double **Gmatrix, OperationMethod operationMethod) override;
     void stampSolutionVector(double* solutionVector) override;
 
     void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;

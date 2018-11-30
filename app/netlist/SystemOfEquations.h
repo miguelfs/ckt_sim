@@ -16,7 +16,9 @@ public:
 
     double **G;
 
-    double *RightSideVector;
+    double *RHSVector;
+
+    double *SolutionVector;
 
     void setOrderOfMatrixG(int orderOfMatrixG);
 
@@ -26,6 +28,14 @@ public:
 
     void isOperatingPointNeeded(bool i);
 
+    void initializeRSVector();
+
+    void initializeSolutionsVector();
+
+    void buildThatRSVector(int quantityOfComponents, std::vector<Component *> &components);
+
+    void solveSystem();
+
 private:
     int orderOfMatrixG;
 
@@ -33,11 +43,10 @@ private:
 
     OperationMethod operationMethod;
 
-    void setStampsForInitialCondition(int quantityOfComponents, std::vector<Component *> &components);
+    void printThatRHS();
 
-    void initializeRSVector();
 
-    void buildThatRSVector(int quantityOfComponents, std::vector<Component *> &components);
+    void eliminateGroundVariables(double **G, double *RHSVector, int dimension);
 };
 
 

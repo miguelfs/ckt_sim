@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #include "Inductor.h"
@@ -23,7 +23,7 @@ Inductor::Inductor(std::string row, int quantityOfArguments, double timeStep, in
               << std::endl;
 }
 
-void Inductor::stampG(double **G) {
+void Inductor::stampG(double **G, OperationMethod operationMethod) {
     try {
         isEqualsZero(timeStep);
     } catch (char *errorToPrint) {
@@ -31,6 +31,9 @@ void Inductor::stampG(double **G) {
     }
 
     double conductance =  timeStep/inductance;
+
+    if (operationMethod == operatingPoint)
+        conductance = 9999999999999999;
 
     double stamp[3][3];
     stamp[0][0] = 0.0;
@@ -60,6 +63,9 @@ void Inductor::stampSolutionVector(double *solutionVector) {
 
 void Inductor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
 
+    //   if (operationMethod == initialConditions){
+    rightSideVector[wire] = inductance * initialCurrent / timeStep;
+    //   }
 }
 
 void Inductor::isEqualsZero(double number) {

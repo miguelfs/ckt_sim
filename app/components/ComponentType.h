@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 01/12/17.
+// Created by Miguel Sousa on 01/11/18.
 //
 
 #ifndef CKT_SIM_COMPONENTTYPE_H

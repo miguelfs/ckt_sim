@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #include "AmpOp.h"
@@ -18,7 +18,7 @@ AmpOp::AmpOp(std::string row, int quantityOfArguments, int wire) : Component(amp
     this->wire = wire;
 }
 
-void AmpOp::stampG(double **G) {
+void AmpOp::stampG(double **G, OperationMethod operationMethod) {
 //modelo baseado no amp op ideal
     G[nodes[0]][wire] += 1.0;
     G[nodes[1]][wire] += -1.0;

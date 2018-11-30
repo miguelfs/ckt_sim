@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #include "VoltageSource.h"
@@ -19,7 +19,7 @@ VoltageSource::VoltageSource(std::string row, int quantityOfArguments, int wire)
     this->wire = wire;
 }
 
-void VoltageSource::stampG(double **G) {
+void VoltageSource::stampG(double **G, OperationMethod operationMethod) {
 
     G[0][wire] += 1.0;
     G[1][wire] += -1.0;

@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #include "Capacitor.h"
@@ -23,7 +23,7 @@ Capacitor::Capacitor(std::string row, int quantityOfArguments, double timeStep) 
 }
 
 //quando newton-raphson, matriz G muda POIS nao linear.
-void Capacitor::stampG(double **G){
+void Capacitor::stampG(double **G, OperationMethod operationMethod) {
     try {
         isEqualsZero(timeStep);
     } catch (char *errorToPrint) {
@@ -31,6 +31,8 @@ void Capacitor::stampG(double **G){
     }
 
     double conductance = capacitance / timeStep;
+    if (operationMethod == operatingPoint)
+        conductance = 0.000000000000001;
 
     double stamp[2][2];
     stamp[0][0] = conductance ;
@@ -43,7 +45,16 @@ void Capacitor::stampG(double **G){
 
 
 void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+    double stamp[2];
+    stamp[0] = 0.0;
+    stamp[1] = 0.0;
+    if (operationMethod == initialConditions) {
+        stamp[0] = capacitance * initialVoltage / timeStep;
+        stamp[1] = -1.0 * capacitance * initialVoltage / timeStep;
+    }
 
+    rightSideVector[nodes[0]] += stamp[0];
+    rightSideVector[nodes[1]] += stamp[1];
 }
 
 void Capacitor::stampSolutionVector(double *solutionVector) {

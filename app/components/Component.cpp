@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 01/12/17.
+// Created by Miguel Sousa on 01/11/18.
 //
 
 #include <sstream>
@@ -69,9 +69,7 @@ void Component::stampRightSideVector(double *rightSideVector, OperationMethod op
 
 }
 
-void Component::stampG(double **G) {
-    cout << "A";
-
+void Component::stampG(double **G, OperationMethod operationMethod) {
 }
 
 

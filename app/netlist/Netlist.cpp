@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 01/12/17.
+// Created by Miguel Sousa on 01/11/18.
 //
 
 #include "Netlist.h"
@@ -16,13 +16,11 @@ Netlist::Netlist(std::string fileName) : quantityOfAuxiliarCurrents(0), quantity
 
     setTransient(text, numberOfLines);
     initializeComponents(text, numberOfLines, this->transient.getTimeStep());
+
     systemOfEquations.setOrderOfMatrixG(quantityOfNodes + quantityOfAuxiliarCurrents + 1);
-
-    //  orderOfMatrixG = quantityOfNodes + quantityOfAuxiliarCurrents + 1;
-    //quantity of auxiliar currents is set in initializeComponents method
-
-    //initializeGMatrix();
     systemOfEquations.initializeGMatrix();
+    systemOfEquations.initializeSolutionsVector();
+    systemOfEquations.initializeRSVector();
 }
 
 void Netlist::setTransient(const string *text, int numberOfLines) {
@@ -55,44 +53,18 @@ bool Netlist::isAuxiliarEquationNeeded(Component_Type type) {
            type == currentControlledCurrentSource || type == currentControlledVoltageSource;
 }
 
-//void Netlist::initializeGMatrix() {
-//    GMatrix = (double **) malloc(orderOfMatrixG * sizeof(double *));
-//    for (int i = 0; i < orderOfMatrixG; i++)
-//        GMatrix[i] = (double *) malloc(orderOfMatrixG * sizeof(double));
-//
-//
-//    for (int i = 0; i < orderOfMatrixG; i++)
-//        for (int j = 0; j < orderOfMatrixG; j++)
-//            GMatrix[i][j] = 0.0;
-//
-//  //  printThatG();
-//}
-
-
 void ::Netlist::buildThatG() {
     systemOfEquations.buildThatG(quantityOfComponents, components);
-//    for (int i = 0; i < quantityOfComponents; i++)
-//        components[i]->stampG(GMatrix);
-//
-//    printThatG();
+}
+
+void Netlist::buildThatRSVector() {
+    systemOfEquations.buildThatRSVector(quantityOfComponents, components);
 }
 
 void Netlist::doOperatingPointIfNeeded() {
 
 }
 
-//void ::Netlist::printThatG() {
-//    std::cout << std::endl;
-//    for (int i = 0; i < orderOfMatrixG; i++) {
-//        std::cout << "[ ";
-//        for (int j = 0; j < orderOfMatrixG; j++)
-//            std::cout << GMatrix[i][j] << "\t\t\t\t";
-//        std::cout << "]" << std::endl;
-//    }
-//    std::cout << std::endl;
-//}
-
-
-//void Netlist::generate_incidence_matrix(std::string *text_lines, int number_of_lines) {
-//
-//}
+void Netlist::solveSystem() {
+    systemOfEquations.solveSystem();
+}

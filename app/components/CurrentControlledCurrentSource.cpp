@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #include "CurrentControlledCurrentSource.h"
@@ -9,7 +9,7 @@ CurrentControlledCurrentSource::CurrentControlledCurrentSource(std::string row, 
 
 }
 
-void CurrentControlledCurrentSource::stampG(double **Gmatrix) {
+void CurrentControlledCurrentSource::stampG(double **Gmatrix, OperationMethod operationMethod) {
 
 }
 

@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #ifndef CKT_SIM_INDUCTOR_H
@@ -23,7 +23,7 @@ private:
     double initialCurrent;
     double timeStep;
 
-    void stampG(double** Gmatrix) override;
+    void stampG(double **Gmatrix, OperationMethod operationMethod) override;
     void stampSolutionVector(double* solutionVector) override;
 
     void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;

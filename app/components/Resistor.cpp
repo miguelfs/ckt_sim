@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #include <sstream>
@@ -19,7 +19,7 @@ Resistor::Resistor(std::string row, int quantityOfArguments) : Component(resisto
 }
 
 //inspiration: jspice by timmolter, https://github.com/knowm/jspice
-void Resistor::stampG(double **G) {
+void Resistor::stampG(double **G, OperationMethod operationMethod) {
 
     double conductance = 1 / this->resistance;
 

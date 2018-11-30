@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 01/12/17.
+// Created by Miguel Sousa on 01/11/18.
 //
 
 #ifndef CKT_SIM_COMPONENT_H
@@ -13,7 +13,7 @@ class Component {
  public:
 
 
-     virtual void stampG(double** G);
+    virtual void stampG(double **G, OperationMethod operationMethod);
 
     virtual void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod);
 

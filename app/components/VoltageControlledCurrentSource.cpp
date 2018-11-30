@@ -1,5 +1,5 @@
 //
-// Created by Miguel Sousa on 02/12/17.
+// Created by Miguel Sousa on 02/11/18.
 //
 
 #include "VoltageControlledCurrentSource.h"
@@ -9,7 +9,7 @@ VoltageControlledCurrentSource::VoltageControlledCurrentSource(std::string row, 
 
 }
 
-void VoltageControlledCurrentSource::stampG(double **Gmatrix) {
+void VoltageControlledCurrentSource::stampG(double **Gmatrix, OperationMethod operationMethod) {
 
 }
 
