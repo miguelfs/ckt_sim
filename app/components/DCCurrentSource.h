@@ -8,16 +8,20 @@
 
 #include "Component.h"
 #include "../netlist/OperationMethod.h"
+#include "SineWaveParameters.h"
 
-class CurrentSource : public Component{
+class DCCurrentSource : public Component {
 
 public:
-    CurrentSource(std::string row, int i);
+    DCCurrentSource(std::string row, int quantityOfArguments);
 
     void stampG(double **Gmatrix, OperationMethod operationMethod) override;
     void stampSolutionVector(double* solutionVector) override;
 
     void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
+
+    double current;
+    SineWaveParameters *sineWaveParameters;
 };
 
 

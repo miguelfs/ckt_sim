@@ -9,9 +9,9 @@
 using namespace std;
 
 enum SourceType {
-    DC,
-    Sinusoidal,
-    Pulse
+    dcSource = 'D',
+    Sinusoidal = 'S',
+    Pulse = 'P'
 };
 
 static const char * SourceTypeValue[] = { "DC", "SIN", "PULSE" };

@@ -22,9 +22,6 @@ void Component::splitRow(int quantityOfArguments, string row, std::string* argum
     for (int i = 0; i < quantityOfArguments; i++){
         arguments[i] = results [i];
     }
-
-
-
 }
 
 double Component::getInitialCondition(std::string initialCondition) {
@@ -70,6 +67,18 @@ void Component::stampRightSideVector(double *rightSideVector, OperationMethod op
 }
 
 void Component::stampG(double **G, OperationMethod operationMethod) {
+}
+
+double Component::getTime() const {
+    return time;
+}
+
+void Component::setTime(double time) {
+    Component::time = time;
+}
+
+double Component::parse(string word) {
+    return strtod(word.c_str(), nullptr);
 }
 
 

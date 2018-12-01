@@ -41,6 +41,9 @@ void Netlist::initializeComponents(std::string *text, int numberOfLines, double 
         if (isAuxiliarEquationNeeded(components[j]->getComponentType()))
             quantityOfAuxiliarCurrents++;
 
+        if (components[j]->getComponentType() == currentControlledVoltageSource)
+            quantityOfAuxiliarCurrents++;
+
         if (components[j]->doesHaveInitialCondition())
             systemOfEquations.isOperatingPointNeeded(false);
 

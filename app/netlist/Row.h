@@ -16,6 +16,12 @@ public:
 
 private:
     std::string stringRow;
+
+    Component *getVoltageSource(std::string row, int wire);
+
+    Component *getCurrentSource(std::string row, int wire);
+
+    void splitRow(int quantityOfArguments, std::string row, std::string *arguments);
 };
 
 

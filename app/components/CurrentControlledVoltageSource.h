@@ -12,12 +12,17 @@
 class CurrentControlledVoltageSource  : public Component{
 
 public:
-    CurrentControlledVoltageSource(std::string row, int i);
+    CurrentControlledVoltageSource(std::string row, int quantityOfArguments, int wireX,
+                                   int wireY);
 
     void stampG(double **Gmatrix, OperationMethod operationMethod) override;
     void stampSolutionVector(double* solutionVector) override;
 
     void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
+
+    int wireX;
+    double gain;
+    int wireY;
 };
 
 

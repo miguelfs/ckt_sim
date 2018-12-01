@@ -32,13 +32,19 @@ class Component {
 
      double getInitialCondition(std::string initialCondition);
 
-
      virtual void stampSolutionVector(double* solutionVector) ;
 
      Component(Component_Type type);
 
      void GstampFor2x2Component(double **G, double stamp[2][2], int *nodes);
 
- };
+    double time;
+public:
+    double getTime() const;
+
+    void setTime(double time);
+
+    double parse(std::string word);
+};
 
 #endif //CKT_SIM_COMPONENT_H

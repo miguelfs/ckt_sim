@@ -9,11 +9,11 @@
 #include "Component.h"
 #include "../netlist/OperationMethod.h"
 
-class VoltageSource : public Component {
+class DCVoltageSource : public Component {
 
 public:
 
-    VoltageSource(std::string row, int quantityOfArguments, int wire);
+    DCVoltageSource(std::string row, int quantityOfArguments, int wire);
 
     void stampG(double **G, OperationMethod operationMethod) override;
     void stampSolutionVector(double* solutionVector) override;
@@ -22,6 +22,7 @@ public:
 
 private:
     int wire;
+    double voltage;
 };
 
 
