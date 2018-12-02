@@ -24,8 +24,6 @@ void FileWriter::writeRow(std::string row) {
         file.close();
     } else {    // use existing file
         file.open(this->fileName, std::fstream::in | std::fstream::out | std::fstream::app);
-        cout << "success " << fileName << " found. \n";
-        cout << "\nAppending writing and working with existing file" << "\n---\n";
         file << row << "\n";
         file.close();
         cout << "\n";

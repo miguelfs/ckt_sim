@@ -20,7 +20,7 @@ void Component::splitRow(int quantityOfArguments, string row, std::string* argum
                                      std::istream_iterator<std::string>());
 
     for (int i = 0; i < quantityOfArguments; i++){
-        arguments[i] = results [i];
+        arguments[i] = results[i];
     }
 }
 
