@@ -21,6 +21,7 @@ FileReader::FileReader(string fileName) {
 }
 
 int FileReader::getNumberOfLines(string fileName) {
+
     ifstream in(fileName);
     int numberOfLines= 0;
     for(string line; getline(in, line ); ) {
