@@ -10,6 +10,7 @@
 #include "../components/Component.h"
 #include "Transient.h"
 #include "SystemOfEquations.h"
+#include "../fileWriter/FileWriter.h"
 
 class Netlist {
 public:
@@ -18,26 +19,36 @@ public:
 
     void buildThatG();
 
-    void buildThatRSVector();
-
+    void buildThatRHSVector();
 
     void doOperatingPointIfNeeded();
 
     void solveSystem();
+
+    void updateReactiveValues();
+
+    double getFinalTime();
+
+    double getTimeStep();
+
+    void writeSolutionOnFile(double time);
+
+    void clearThatG();
+
+    void clearThatRHSVector();
+
+    void clearThatSolutionVector();
+
+    void printGandRHS();
 
 private:
     std::vector<Component *> components;
     double** GMatrix;
     double* rightSideVector;
     SystemOfEquations systemOfEquations;
-
-public:
-
-private:
     int quantityOfComponents;
     int quantityOfNodes;
     int quantityOfAuxiliarCurrents;
-    int orderOfMatrixG;
     Transient transient;
 
     void initializeComponents(std::string *text, int i, double timeStep);
@@ -46,6 +57,7 @@ private:
 
     void setTransient(const std::string *text, int numberOfLines);
 
+    FileWriter *fileWriter;
 };
 
 

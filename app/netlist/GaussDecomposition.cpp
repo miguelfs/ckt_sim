@@ -38,11 +38,6 @@ void GaussDecomposition::solve(double **G, double *RHSVector, int dimension) {
             std::cout << errorToPrint;
         }
 
-//            int column = G[row].size();
-//            if (dimension != column) {
-//                throw invalid_argument("Matrizes de condutancia deve ser quadrada");
-//            }
-
         RHSVector[row] /= pivot;
         for (int col = 1; col < dimension; col++) {
             G[row][col] /= pivot;

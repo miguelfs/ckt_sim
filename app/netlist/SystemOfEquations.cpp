@@ -18,15 +18,10 @@ void SystemOfEquations::initializeGMatrix() {
     for (int i = 0; i < orderOfMatrixG; i++)
         G[i] = (double *) malloc(orderOfMatrixG * sizeof(double));
 
-    for (int i = 0; i < orderOfMatrixG; i++)
-        for (int j = 0; j < orderOfMatrixG; j++)
-            G[i][j] = 0.0;
+    clearThatG();
 }
 
 void SystemOfEquations::buildThatG(int quantityOfComponents, std::vector<Component *> &components) {
-
-    initializeGMatrix();
-
     for (int i = 0; i < quantityOfComponents; i++)
         components[i]->stampG(G, transient);
 }
@@ -70,15 +65,23 @@ void SystemOfEquations::isOperatingPointNeeded(bool i) {
 void SystemOfEquations::initializeRSVector() {
     RHSVector = (double *) malloc(orderOfMatrixG * sizeof(double));
 
+    clearThatRHSVector();
+}
+
+void SystemOfEquations::clearThatRHSVector() {
     for (int i = 0; i < orderOfMatrixG; i++)
         RHSVector[i] = 0.0;
+}
+
+void SystemOfEquations::clearThatSolutionVector() {
+    for (int i = 0; i < orderOfMatrixG; i++)
+        SolutionVector[i] = 0.0;
 }
 
 void SystemOfEquations::initializeSolutionsVector() {
     SolutionVector = (double *) malloc(orderOfMatrixG * sizeof(double));
 
-    for (int i = 0; i < orderOfMatrixG; i++)
-        SolutionVector[i] = 0.0;
+    clearThatSolutionVector();
 }
 
 void SystemOfEquations::buildThatRSVector(int quantityOfComponents, std::vector<Component *> &components) {
@@ -93,16 +96,19 @@ SystemOfEquations::SystemOfEquations() {
 void SystemOfEquations::solveSystem() {
 
     printThatG();
-
     printThatRHS();
+
 
     GaussDecomposition gaussDecomposition = *new GaussDecomposition();
     gaussDecomposition.solve(G, RHSVector, orderOfMatrixG);
 
-    printThatG();
-
+    std::cout << "solution is: \n";
     printThatRHS();
 
+    SolutionVector[0] = 0;
+    for (int row = 1; row < orderOfMatrixG; row++) {
+        SolutionVector[row] = RHSVector[row];
+    }
 }
 
 void SystemOfEquations::eliminateGroundVariables(double **G, double *RHSVector, int dimension) {
@@ -116,4 +122,18 @@ void SystemOfEquations::eliminateGroundVariables(double **G, double *RHSVector, 
 
     for (int row = 1; row < dimension; row++)
         RHSVector[row - 1] = RHSVector[row - 1];
+}
+
+double *SystemOfEquations::getSolutionVector() {
+    return SolutionVector;
+}
+
+int SystemOfEquations::getOrderOfMatrixG() const {
+    return orderOfMatrixG;
+}
+
+void SystemOfEquations::clearThatG() {
+    for (int i = 0; i < orderOfMatrixG; i++)
+        for (int j = 0; j < orderOfMatrixG; j++)
+            G[i][j] = 0.0;
 }

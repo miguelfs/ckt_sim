@@ -36,17 +36,30 @@ public:
 
     void solveSystem();
 
-private:
-    int orderOfMatrixG;
+    double *getSolutionVector();
+
+    int getOrderOfMatrixG() const;
+
+    void clearThatG();
+
+    void clearThatRHSVector();
+
+    void clearThatSolutionVector();
 
     void printThatG();
 
+    void printThatRHS();
+
+private:
+    int orderOfMatrixG;
+
+
     OperationMethod operationMethod;
 
-    void printThatRHS();
 
 
     void eliminateGroundVariables(double **G, double *RHSVector, int dimension);
+
 };
 
 

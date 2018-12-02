@@ -4,11 +4,16 @@
 
 #include "Netlist.h"
 #include "../fileReader/FileReader.h"
+#include "../fileWriter/FileWriter.h"
 #include "Row.h"
 #include <iostream>
+#include <sstream>
 
 Netlist::Netlist(std::string fileName) : quantityOfAuxiliarCurrents(0), quantityOfComponents(0), systemOfEquations() {
-    FileReader *fileReader = new FileReader(std::move(fileName));
+    std::cout << "NOME DO ARQUIVO EH " << fileName << "!!!\n";
+
+    FileReader *fileReader = new FileReader(fileName);
+
     string *text = fileReader->getTextLines();
     int numberOfLines = fileReader->numberOfLines;
 
@@ -21,6 +26,11 @@ Netlist::Netlist(std::string fileName) : quantityOfAuxiliarCurrents(0), quantity
     systemOfEquations.initializeGMatrix();
     systemOfEquations.initializeSolutionsVector();
     systemOfEquations.initializeRSVector();
+
+    this->fileWriter = new FileWriter(fileName);
+    this->fileWriter->setHeaderRow(components, quantityOfComponents, quantityOfNodes,
+                                   quantityOfAuxiliarCurrents);
+
 }
 
 void Netlist::setTransient(const string *text, int numberOfLines) {
@@ -60,7 +70,7 @@ void ::Netlist::buildThatG() {
     systemOfEquations.buildThatG(quantityOfComponents, components);
 }
 
-void Netlist::buildThatRSVector() {
+void Netlist::buildThatRHSVector() {
     systemOfEquations.buildThatRSVector(quantityOfComponents, components);
 }
 
@@ -70,4 +80,49 @@ void Netlist::doOperatingPointIfNeeded() {
 
 void Netlist::solveSystem() {
     systemOfEquations.solveSystem();
+}
+
+void Netlist::updateReactiveValues() {
+    for (int index = 0; index < quantityOfComponents; index++) {
+        if (components[index]->getComponentType() == inductor ||
+            components[index]->getComponentType() == capacitor) {
+            components[index]->setValue(systemOfEquations.getSolutionVector());
+        }
+
+    }
+}
+
+double Netlist::getFinalTime() {
+    return transient.getFinalTime();
+}
+
+double Netlist::getTimeStep() {
+    return transient.getTimeStep();
+}
+
+void Netlist::writeSolutionOnFile(double time) {
+    std::stringstream ss;
+    ss << time << " ";
+    for (int i = 1; i < systemOfEquations.getOrderOfMatrixG(); i++) {
+        ss << systemOfEquations.getSolutionVector()[i] << " ";
+    }
+    fileWriter->writeRow(ss.str());
+}
+
+void Netlist::clearThatG() {
+    systemOfEquations.clearThatG();
+
+}
+
+void Netlist::clearThatRHSVector() {
+    systemOfEquations.clearThatRHSVector();
+}
+
+void Netlist::clearThatSolutionVector() {
+    systemOfEquations.clearThatSolutionVector();
+}
+
+void Netlist::printGandRHS() {
+    systemOfEquations.printThatG();
+    systemOfEquations.printThatRHS();
 }

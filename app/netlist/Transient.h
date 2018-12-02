@@ -35,6 +35,8 @@ public:
 
     double getTimeStep();
 
+    double getFinalTime() const;
+
 
 };
 

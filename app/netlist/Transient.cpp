@@ -37,3 +37,7 @@ Transient::Transient() {}
 double Transient::getTimeStep() {
     return timeStep;
 }
+
+double Transient::getFinalTime() const {
+    return finalTime;
+}

@@ -81,5 +81,12 @@ double Component::parse(string word) {
     return strtod(word.c_str(), nullptr);
 }
 
+void Component::setValue(double *SolutionVector) {
+}
+
+const string &Component::getName() const {
+    return name;
+}
+
 
 

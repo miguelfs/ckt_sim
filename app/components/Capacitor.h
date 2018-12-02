@@ -21,10 +21,14 @@ public:
 
     bool doesHaveInitialCondition() override;
 
+    void setVoltage(double voltage);
+
+    void setValue(double *SolutionVector) override;
+
 private:
     double capacitance;
     int nodes[2];
-    double initialVoltage;
+    double voltage;
     double timeStep;
 
 

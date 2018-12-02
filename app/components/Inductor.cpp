@@ -15,11 +15,11 @@ Inductor::Inductor(std::string row, int quantityOfArguments, double timeStep, in
     nodes[1] = stoi(arguments[2]);
     this->wire = wire;
     inductance = strtod(arguments[3].c_str(), nullptr);
-    initialCurrent = getInitialCondition(arguments[4]);
+    current = getInitialCondition(arguments[4]);
     this->timeStep = timeStep;
 
     std::cout << "name = " << name << ",  nodeA = " << nodes[0] << ", nodeB = " << nodes[1] << ", wire = " << wire <<
-              ", L = " << inductance << "H, I(0) = " << initialCurrent << ", timeStep = " << this->timeStep
+              ", L = " << inductance << "H, I(0) = " << current << ", timeStep = " << this->timeStep
               << std::endl;
 }
 
@@ -64,7 +64,7 @@ void Inductor::stampSolutionVector(double *solutionVector) {
 void Inductor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
 
     //   if (operationMethod == initialConditions){
-    rightSideVector[wire] = inductance * initialCurrent / timeStep;
+    rightSideVector[wire] = inductance * current / timeStep;
     //   }
 }
 
@@ -75,5 +75,13 @@ void Inductor::isEqualsZero(double number) {
 }
 
 bool Inductor::doesHaveInitialCondition() {
-    return initialCurrent != 0;
+    return current != 0;
+}
+
+void Inductor::setCurrent(double current) {
+    Inductor::current = current;
+}
+
+void Inductor::setValue(double *SolutionVector) {
+    current = SolutionVector[wire];
 }

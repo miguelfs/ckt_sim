@@ -24,7 +24,12 @@ class Component {
      Component();
 
      virtual bool doesHaveInitialCondition();
- protected:
+
+    virtual void setValue(double *SolutionVector);
+
+    const std::string &getName() const;
+
+protected:
      int *nodes;
      std::string name;
 

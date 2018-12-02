@@ -15,11 +15,11 @@ Capacitor::Capacitor(std::string row, int quantityOfArguments, double timeStep) 
     nodes[0] = stoi(arguments[1]);
     nodes[1] = stoi(arguments[2]);
     capacitance = strtod(arguments[3].c_str(), nullptr);
-    initialVoltage = getInitialCondition(arguments[4]);
+    voltage = getInitialCondition(arguments[4]);
     this->timeStep = timeStep;
 
     std::cout << "name = " << name << ",  nodeA = " << nodes[0] << ", nodeB = " << nodes[1] <<
-              ", C = " << capacitance << "F, I(0) = " << initialVoltage << std::endl;
+              ", C = " << capacitance << "F, I(0) = " << voltage << std::endl;
 }
 
 //quando newton-raphson, matriz G muda POIS nao linear.
@@ -48,10 +48,10 @@ void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod op
     double stamp[2];
     stamp[0] = 0.0;
     stamp[1] = 0.0;
-    if (operationMethod == initialConditions) {
-        stamp[0] = capacitance * initialVoltage / timeStep;
-        stamp[1] = -1.0 * capacitance * initialVoltage / timeStep;
-    }
+    //  if (operationMethod == initialConditions) {
+    stamp[0] = capacitance * voltage / timeStep;
+    stamp[1] = -1.0 * capacitance * voltage / timeStep;
+    //  }
 
     rightSideVector[nodes[0]] += stamp[0];
     rightSideVector[nodes[1]] += stamp[1];
@@ -68,5 +68,9 @@ void Capacitor::isEqualsZero(double number) {
 }
 
 bool Capacitor::doesHaveInitialCondition() {
-    return initialVoltage != 0;
+    return voltage != 0;
+}
+
+void Capacitor::setValue(double *SolutionVector) {
+    voltage = SolutionVector[nodes[0]] - SolutionVector[nodes[1]];
 }

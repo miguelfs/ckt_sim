@@ -16,11 +16,13 @@ public:
 
     bool doesHaveInitialCondition() override;
 
+    void setCurrent(double current);
+
 private:
     double inductance;
     int nodes[2];
     int wire;
-    double initialCurrent;
+    double current;
     double timeStep;
 
     void stampG(double **Gmatrix, OperationMethod operationMethod) override;
@@ -28,6 +30,8 @@ private:
 
     void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
     void isEqualsZero(double number);
+
+    void setValue(double *SolutionVector) override;
 };
 
 
