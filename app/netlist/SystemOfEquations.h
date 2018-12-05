@@ -54,8 +54,10 @@ public:
 private:
     int orderOfMatrixG;
 
-
     OperationMethod operationMethod;
+public:
+    void setOperationMethod(OperationMethod operationMethod);
+
 public:
     OperationMethod getOperationMethod();
 

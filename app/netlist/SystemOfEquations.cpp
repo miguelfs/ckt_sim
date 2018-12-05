@@ -160,6 +160,10 @@ void SystemOfEquations::solve() {
         SolutionVector[row] = solutionVector(row - 1);
 }
 
+void SystemOfEquations::setOperationMethod(OperationMethod operationMethod) {
+    SystemOfEquations::operationMethod = operationMethod;
+}
+
 
 
 

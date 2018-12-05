@@ -35,6 +35,9 @@ void Inductor::stampG(double **G, OperationMethod operationMethod) {
     if (operationMethod == operatingPoint)
         conductance = 9999999999999999;
 
+    if (operationMethod == initialConditions)
+        conductance = 0.0000000000000000;
+
     double stamp[3][3];
     stamp[0][0] = 0.0;
     stamp[0][1] = 0.0;

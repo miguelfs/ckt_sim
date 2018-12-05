@@ -12,8 +12,8 @@ int main() {
     std::string filepath = "../input/" + string(text[0]);
 
     Netlist netlist = Netlist(filepath);
-    netlist.doOperatingPointIfNeeded();
-    netlist.writeInitialConditionsIfNeeded();
+
+    netlist.buildFirstIteraction();
 
     for (double t = 0; t < netlist.getFinalTime();) {
         netlist.buildThatG();

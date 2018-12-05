@@ -56,7 +56,9 @@ void Netlist::initializeComponents(std::string *text, int numberOfLines, double 
             quantityOfAuxiliarCurrents++;
 
         if (components[j]->doesHaveInitialCondition())
-            systemOfEquations.isOperatingPointNeeded(false);
+            systemOfEquations.setOperationMethod(initialConditions);
+        else
+            systemOfEquations.setOperationMethod(operatingPoint);
 
         j++;
     }
@@ -133,4 +135,27 @@ std::string Netlist::getWrittenFileName() {
 
 void Netlist::writeInitialConditionsIfNeeded() {
  //   if (systemOfEquations.getOperationMethod() == initialConditions
+}
+
+OperationMethod  Netlist::getOperationMethod(){
+    return systemOfEquations.getOperationMethod();
+}
+
+void Netlist::buildFirstIteraction() {
+    if (systemOfEquations.getOperationMethod() == initialConditions)
+
+}
+
+void Netlist::solveAndWrite(double t) {
+    buildThatG(transient);
+    buildThatRHSVector(t);
+
+    solveSystem();
+
+    writeSolutionOnFile(t);
+    updateReactiveValues();
+
+    clearThatG();
+    clearThatRHSVector();
+    clearThatSolutionVector();
 }

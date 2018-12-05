@@ -45,6 +45,12 @@ public:
 
     void writeInitialConditionsIfNeeded();
 
+    void buildFirstIteraction();
+
+    OperationMethod getOperationMethod();
+
+    void solveAndWrite(double t);
+
 private:
     std::vector<Component *> components;
     double** GMatrix;

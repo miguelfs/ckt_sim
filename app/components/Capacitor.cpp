@@ -33,6 +33,9 @@ void Capacitor::stampG(double **G, OperationMethod operationMethod) {
     if (operationMethod == operatingPoint)
         conductance = 0.000000000000001;
 
+    if (operationMethod == initialConditions)
+        conductance = 9999999999999999;
+
     double stamp[2][2];
     stamp[0][0] = conductance ;
     stamp[0][1] = -1 * conductance;
