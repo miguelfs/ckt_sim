@@ -5,7 +5,8 @@
 #include "SineWaveVoltageSource.h"
 #include "SineWaveParameters.h"
 
-SineWaveVoltageSource::SineWaveVoltageSource(std::string row, int quantityOfArguments, int wire) {
+SineWaveVoltageSource::SineWaveVoltageSource(std::string row, int quantityOfArguments, int wire)
+        : Component(voltageSource){
     std::string arguments[quantityOfArguments];
     splitRow(quantityOfArguments, std::move(row), arguments);
     //std::move to avoid unnecessary copies, only copy once
@@ -27,13 +28,14 @@ SineWaveVoltageSource::SineWaveVoltageSource(std::string row, int quantityOfArgu
 
 
 void SineWaveVoltageSource::stampG(double **G, OperationMethod operationMethod) {
-    G[0][wire] += 1.0;
-    G[1][wire] += -1.0;
-    G[wire][0] += -1.0;
-    G[wire][1] += 1.0;
+    G[nodes[0]][wire] += 1.0;
+    G[nodes[1]][wire] += -1.0;
+    G[wire][nodes[0]] += -1.0;
+    G[wire][nodes[1]] += 1.0;
 }
 
-void SineWaveVoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
-    sineWaveParameters->setValue(0);
+void
+SineWaveVoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
+    sineWaveParameters->setValue(time);
     rightSideVector[wire] += -1.0 * sineWaveParameters->getValue();
 }

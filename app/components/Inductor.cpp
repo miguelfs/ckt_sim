@@ -61,7 +61,7 @@ void Inductor::stampSolutionVector(double *solutionVector) {
 
 }
 
-void Inductor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void Inductor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
 
     //   if (operationMethod == initialConditions){
     rightSideVector[wire] = inductance * current / timeStep;

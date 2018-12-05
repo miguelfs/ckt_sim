@@ -21,6 +21,10 @@ public:
 private:
 
     std::string fileName;
+public:
+    const std::string &getFileName() const;
+
+private:
 
     bool is_empty(std::ifstream &pFile);
 

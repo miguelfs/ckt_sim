@@ -43,6 +43,7 @@ void Netlist::initializeComponents(std::string *text, int numberOfLines, double 
    // components.resize(static_cast<unsigned long>(numberOfLines - 1));
     int j = 0;
     for (int i = 1; i < numberOfLines - 1; i++) {
+        std::cout << "linha " << i << " = " << text[i] << "\n";
         Row row(text[i]);
         Component *component = row.getComponent(timeStep, quantityOfNodes + quantityOfAuxiliarCurrents + 1);
         components.push_back(component);
@@ -70,8 +71,8 @@ void ::Netlist::buildThatG() {
     systemOfEquations.buildThatG(quantityOfComponents, components);
 }
 
-void Netlist::buildThatRHSVector() {
-    systemOfEquations.buildThatRSVector(quantityOfComponents, components);
+void Netlist::buildThatRHSVector(double time) {
+    systemOfEquations.buildThatRSVector(quantityOfComponents, components, time);
 }
 
 void Netlist::doOperatingPointIfNeeded() {
@@ -88,7 +89,6 @@ void Netlist::updateReactiveValues() {
             components[index]->getComponentType() == capacitor) {
             components[index]->setValue(systemOfEquations.getSolutionVector());
         }
-
     }
 }
 
@@ -125,4 +125,12 @@ void Netlist::clearThatSolutionVector() {
 void Netlist::printGandRHS() {
     systemOfEquations.printThatG();
     systemOfEquations.printThatRHS();
+}
+
+std::string Netlist::getWrittenFileName() {
+    return fileWriter->getFileName();
+}
+
+void Netlist::writeInitialConditionsIfNeeded() {
+ //   if (systemOfEquations.getOperationMethod() == initialConditions
 }

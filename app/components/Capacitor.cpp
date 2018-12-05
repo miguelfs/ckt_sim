@@ -6,7 +6,6 @@
 #include "../netlist/OperationMethod.h"
 #include <iostream>
 
-//TODO: ANALISE DE PONTO DE OPERACAO, 10 ELEVADO A 9 = MUITO GRANDE, 10 A MENOS 9 = MUITO PEQUENO
 Capacitor::Capacitor(std::string row, int quantityOfArguments, double timeStep) : Component(capacitor) {
     std::string arguments[quantityOfArguments];
     splitRow(quantityOfArguments, std::move(row), arguments); //std::move to avoid unnecessary copies, only copy once
@@ -44,7 +43,7 @@ void Capacitor::stampG(double **G, OperationMethod operationMethod) {
 }
 
 
-void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
     double stamp[2];
     stamp[0] = 0.0;
     stamp[1] = 0.0;

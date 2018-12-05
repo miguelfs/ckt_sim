@@ -5,7 +5,7 @@
 #include "PulseCurrentSource.h"
 #include "PulseParameters.h"
 
-PulseCurrentSource::PulseCurrentSource(std::string row, int quantityOfArguments, double timeStep) {
+PulseCurrentSource::PulseCurrentSource(std::string row, int quantityOfArguments, double timeStep) : Component(currentSource){
     std::string arguments[quantityOfArguments];
     splitRow(quantityOfArguments, std::move(row), arguments);
     //std::move to avoid unnecessary copies, only copy once
@@ -28,7 +28,7 @@ PulseCurrentSource::PulseCurrentSource(std::string row, int quantityOfArguments,
 void PulseCurrentSource::stampG(double **G, OperationMethod operationMethod) {
 }
 
-void PulseCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void PulseCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
     pulseParameters->setValue(0);
     this->current = pulseParameters->getValue();
 

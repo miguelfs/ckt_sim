@@ -4,15 +4,22 @@
 
 #include <sstream>
 #include <vector>
+#include <iterator>
+#include <stdexcept>
+#include <iostream>
 #include "Transient.h"
 
 Transient::Transient(std::string row, int quantityOfArguments) {
     std::string arguments[quantityOfArguments];
     splitRow(quantityOfArguments, std::move(row), arguments); //std::move to avoid unnecessary copies, only copy once
-
+try {
     this->finalTime = strtod(arguments[1].c_str(), nullptr);
     this->timeStep = strtod(arguments[2].c_str(), nullptr);
     this->stepsByTablePoint = stoi(arguments[4]);
+} catch(std::invalid_argument& error) {
+    std::cout << "ERRO AO LER DADOS DO TRANSIENTE, ARGUMENTO INVALIDO " << std::endl;
+    throw(error);
+}
     setInitialConfiguration(arguments[5]);
 }
 

@@ -43,6 +43,6 @@ void CurrentControlledVoltageSource::stampSolutionVector(double *solutionVector)
 
 }
 
-void CurrentControlledVoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void CurrentControlledVoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
 
 }

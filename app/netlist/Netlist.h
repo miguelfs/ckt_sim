@@ -19,7 +19,7 @@ public:
 
     void buildThatG();
 
-    void buildThatRHSVector();
+    void buildThatRHSVector(double time);
 
     void doOperatingPointIfNeeded();
 
@@ -40,6 +40,10 @@ public:
     void clearThatSolutionVector();
 
     void printGandRHS();
+
+    std::string getWrittenFileName();
+
+    void writeInitialConditionsIfNeeded();
 
 private:
     std::vector<Component *> components;

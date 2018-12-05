@@ -37,7 +37,7 @@ void Resistor::stampSolutionVector(double *solutionVector) {
 //do nothing
 }
 
-void Resistor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void Resistor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
     //do nothing
 }
     

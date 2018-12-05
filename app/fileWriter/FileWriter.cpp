@@ -32,9 +32,12 @@ void FileWriter::writeRow(std::string row) {
 
 FileWriter::FileWriter(string fileName) {
     std::stringstream ss;
-    std::string substring = fileName.substr(0, fileName.find('.'));
-    ss << substring << ".res";
+    std::string substring = fileName.substr(0, fileName.find_last_of('.'));
+    std::cout << "arquivin = 2" << substring << std::endl;
+
+    ss << substring  << "_cktsim" << ".tab";
     this->fileName = ss.str();
+    std::cout << "arquivin 3 = " << this->fileName<< std::endl;
 
     if (remove(this->fileName.c_str()) != 0)
         cout << "Error deleting file\n";
@@ -75,5 +78,9 @@ bool FileWriter::isOneCurrentNeeded(Component_Type type) {
 
 bool FileWriter::areTwoCurrentsNeeded(Component_Type type) {
     return type == currentControlledVoltageSource;
+}
+
+const string &FileWriter::getFileName() const {
+    return fileName;
 }
 

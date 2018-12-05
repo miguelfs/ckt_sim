@@ -8,6 +8,7 @@
 
 #include "../components/Component.h"
 #include "OperationMethod.h"
+#include <vector>
 
 class SystemOfEquations {
 public:
@@ -32,7 +33,7 @@ public:
 
     void initializeSolutionsVector();
 
-    void buildThatRSVector(int quantityOfComponents, std::vector<Component *> &components);
+    void buildThatRSVector(int quantityOfComponents, std::vector<Component *> &components, double time);
 
     void solveSystem();
 
@@ -55,10 +56,14 @@ private:
 
 
     OperationMethod operationMethod;
+public:
+    OperationMethod getOperationMethod();
 
+private:
 
 
     void eliminateGroundVariables(double **G, double *RHSVector, int dimension);
+    void solve();
 
 };
 

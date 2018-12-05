@@ -21,10 +21,10 @@ DCVoltageSource::DCVoltageSource(std::string row, int quantityOfArguments, int w
 
 void DCVoltageSource::stampG(double **G, OperationMethod operationMethod) {
 
-    G[0][wire] += 1.0;
-    G[1][wire] += -1.0;
-    G[wire][0] += -1.0;
-    G[wire][1] += 1.0;
+    G[nodes[0]][wire] += 1.0;
+    G[nodes[1]][wire] += -1.0;
+    G[wire][nodes[0]] += -1.0;
+    G[wire][nodes[1]] += 1.0;
 
 }
 
@@ -32,7 +32,6 @@ void DCVoltageSource::stampSolutionVector(double *solutionVector) {
 
 }
 
-void DCVoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
-
+void DCVoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
     rightSideVector[wire] += -1.0 * voltage;
 }

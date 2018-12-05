@@ -24,7 +24,7 @@ void DCCurrentSource::stampSolutionVector(double *solutionVector) {
 
 }
 
-void DCCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void DCCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
 
       rightSideVector[nodes[0]] += -1.0 * current;
       rightSideVector[nodes[1]] += current;

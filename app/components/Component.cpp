@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <iostream>
+#include <iterator>
 #include "Component.h"
 #include "../netlist/OperationMethod.h"
 
@@ -19,8 +20,8 @@ void Component::splitRow(int quantityOfArguments, string row, std::string* argum
     std::vector<std::string> results((std::istream_iterator<std::string>(iss)),
                                      std::istream_iterator<std::string>());
 
-    for (int i = 0; i < quantityOfArguments; i++){
-        arguments[i] = results[i];
+    for (int i = 0; i < results.size(); i++){
+            arguments[i] = results[i];
     }
 }
 
@@ -62,19 +63,11 @@ void Component::stampSolutionVector(double *solutionVector) {
 
 }
 
-void Component::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void Component::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
 
 }
 
 void Component::stampG(double **G, OperationMethod operationMethod) {
-}
-
-double Component::getTime() const {
-    return time;
-}
-
-void Component::setTime(double time) {
-    Component::time = time;
 }
 
 double Component::parse(string word) {

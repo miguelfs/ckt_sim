@@ -1,23 +1,23 @@
 
 #include <sstream>
 #include <iostream>
-#include "netlist/Netlist.h"
-#include "fileReader/FileReader.h"
+#include "app/netlist/Netlist.h"
+#include "app/fileReader/FileReader.h"
 
 int main() {
 
-    FileReader *fileReader = new FileReader("/Users/miguel/Developer/CLionProjects/ckt_sim/inputName.txt");
+    FileReader *fileReader = new FileReader("../inputName.txt");
 
-    string *text = fileReader->getTextLines();
-    const string filepath = "/Users/miguel/Developer/CLionProjects/ckt_sim/input/" + text[0];
+    std::string *text = fileReader->getTextLines();
+    std::string filepath = "../input/" + string(text[0]);
 
     Netlist netlist = Netlist(filepath);
     netlist.doOperatingPointIfNeeded();
+    netlist.writeInitialConditionsIfNeeded();
 
     for (double t = 0; t < netlist.getFinalTime();) {
         netlist.buildThatG();
-        netlist.buildThatRHSVector();
-        std::cout << "time to discover\n";
+        netlist.buildThatRHSVector(t);
 
         netlist.solveSystem();
 
@@ -30,5 +30,8 @@ int main() {
 
         t += netlist.getTimeStep();
     }
+    cout << '\n' << "transient table located on " << netlist.getWrittenFileName();
+    cout << '\n' << "Press ENTER twice to close...";
+    getchar();
     return 0;
 }

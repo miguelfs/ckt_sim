@@ -15,7 +15,7 @@ class Component {
 
     virtual void stampG(double **G, OperationMethod operationMethod);
 
-    virtual void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod);
+    virtual void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time);
 
  private:
      Component_Type type;
@@ -30,7 +30,7 @@ class Component {
     const std::string &getName() const;
 
 protected:
-     int *nodes;
+     int nodes[2];
      std::string name;
 
      void splitRow(int size, std::string row, std::string *arr);
@@ -43,11 +43,8 @@ protected:
 
      void GstampFor2x2Component(double **G, double stamp[2][2], int *nodes);
 
-    double time;
 public:
-    double getTime() const;
 
-    void setTime(double time);
 
     double parse(std::string word);
 };
