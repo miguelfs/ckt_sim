@@ -8,6 +8,6 @@
 enum OperationMethod {
     operatingPoint,
     initialConditions,
-    transient
+    transientResponse
 };
 #endif //CKT_SIM_INITIALIZATIONMETHOD_H

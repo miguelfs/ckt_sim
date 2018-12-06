@@ -4,7 +4,9 @@
 
 #ifndef CKT_SIM_COMPONENT_H
 #define CKT_SIM_COMPONENT_H
-
+#define infinitesimalTimeStep 0.0000000001000001
+#define infiniteReactance 1000000000000000
+#define infinitesimalReactance 0.000000000000001
 #include <string>
 #include "ComponentType.h"
 #include "../netlist/OperationMethod.h"

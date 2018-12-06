@@ -8,6 +8,7 @@
 
 #include "../components/ComponentType.h"
 #include "../components/Component.h"
+#include <vector>
 
 class FileWriter {
 public:

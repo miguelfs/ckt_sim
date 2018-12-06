@@ -25,9 +25,8 @@ public:
 
     void initializeGMatrix();
 
-    void buildThatG(int quantityOfComponents, std::vector<Component *> &components);
-
-    void isOperatingPointNeeded(bool i);
+    void buildThatG(int quantityOfComponents, std::vector<Component *> &components,
+                        OperationMethod operationMethod);
 
     void initializeRSVector();
 

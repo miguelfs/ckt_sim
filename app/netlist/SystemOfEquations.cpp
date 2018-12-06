@@ -23,9 +23,10 @@ void SystemOfEquations::initializeGMatrix() {
  //   printThatG();
 }
 
-void SystemOfEquations::buildThatG(int quantityOfComponents, std::vector<Component *> &components) {
+void SystemOfEquations::buildThatG(int quantityOfComponents, std::vector<Component *> &components,
+                                   OperationMethod operationMethod) {
     for (int i = 0; i < quantityOfComponents; i++)
-        components[i]->stampG(G, transient);
+        components[i]->stampG(G, operationMethod);
 }
 
 
@@ -57,13 +58,6 @@ void SystemOfEquations::printThatRHS() {
     std::cout << std::endl;
 }
 
-void SystemOfEquations::isOperatingPointNeeded(bool i) {
-    if (!i)
-        operationMethod = initialConditions;
-    else
-        operationMethod = operatingPoint;
-}
-
 void SystemOfEquations::initializeRSVector() {
     RHSVector = (double *) malloc(orderOfMatrixG * sizeof(double));
 
@@ -92,7 +86,7 @@ void SystemOfEquations::buildThatRSVector(int quantityOfComponents, std::vector<
 }
 
 SystemOfEquations::SystemOfEquations() {
-    operationMethod = operatingPoint;
+    SystemOfEquations::operationMethod = operatingPoint;
 }
 
 void SystemOfEquations::solveSystem() {
@@ -135,6 +129,7 @@ void SystemOfEquations::clearThatG() {
 }
 
 OperationMethod SystemOfEquations::getOperationMethod() {
+    std::cout << "pegar metodo de operacao\n";
     return operationMethod;
 }
 

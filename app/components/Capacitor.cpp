@@ -30,11 +30,13 @@ void Capacitor::stampG(double **G, OperationMethod operationMethod) {
     }
 
     double conductance = capacitance / timeStep;
-    if (operationMethod == operatingPoint)
-        conductance = 0.000000000000001;
+
+    if (operationMethod == operatingPoint) {
+        conductance = 1.0 / infiniteReactance;
+    }
 
     if (operationMethod == initialConditions)
-        conductance = 9999999999999999;
+        conductance = capacitance / infinitesimalTimeStep;
 
     double stamp[2][2];
     stamp[0][0] = conductance ;
@@ -47,13 +49,22 @@ void Capacitor::stampG(double **G, OperationMethod operationMethod) {
 
 
 void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
+
+    double voltageByIntegration = capacitance * voltage / timeStep;
     double stamp[2];
-    stamp[0] = 0.0;
-    stamp[1] = 0.0;
-    //  if (operationMethod == initialConditions) {
     stamp[0] = capacitance * voltage / timeStep;
     stamp[1] = -1.0 * capacitance * voltage / timeStep;
-    //  }
+
+      if (operationMethod == initialConditions) {
+          stamp[0] = capacitance * voltage / infinitesimalTimeStep;
+          stamp[1] = -1.0 * capacitance * voltage / infinitesimalTimeStep;
+     }
+
+     if (operationMethod == operatingPoint ) {
+         stamp[0] = 1.0 / infinitesimalReactance;
+         stamp[1] = -1.0 / infinitesimalReactance;
+     }
+
 
     rightSideVector[nodes[0]] += stamp[0];
     rightSideVector[nodes[1]] += stamp[1];

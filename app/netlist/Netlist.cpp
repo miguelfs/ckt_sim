@@ -57,8 +57,6 @@ void Netlist::initializeComponents(std::string *text, int numberOfLines, double 
 
         if (components[j]->doesHaveInitialCondition())
             systemOfEquations.setOperationMethod(initialConditions);
-        else
-            systemOfEquations.setOperationMethod(operatingPoint);
 
         j++;
     }
@@ -69,11 +67,12 @@ bool Netlist::isAuxiliarEquationNeeded(Component_Type type) {
            type == currentControlledCurrentSource || type == currentControlledVoltageSource;
 }
 
-void ::Netlist::buildThatG() {
-    systemOfEquations.buildThatG(quantityOfComponents, components);
+void ::Netlist::buildThatG(OperationMethod operationMethod) {
+    systemOfEquations.setOperationMethod(operationMethod);
+    systemOfEquations.buildThatG(quantityOfComponents, components, operationMethod);
 }
 
-void Netlist::buildThatRHSVector(double time) {
+void Netlist::buildThatRHSVector(double time, OperationMethod operationMethod) {
     systemOfEquations.buildThatRSVector(quantityOfComponents, components, time);
 }
 
@@ -142,20 +141,17 @@ OperationMethod  Netlist::getOperationMethod(){
 }
 
 void Netlist::buildFirstIteraction() {
-    if (systemOfEquations.getOperationMethod() == initialConditions)
-
-}
-
-void Netlist::solveAndWrite(double t) {
-    buildThatG(transient);
-    buildThatRHSVector(t);
+   // if (systemOfEquations.getOperationMethod() == initialConditions)
+    buildThatG(systemOfEquations.getOperationMethod());
+    buildThatRHSVector(0.0, systemOfEquations.getOperationMethod());
 
     solveSystem();
 
-    writeSolutionOnFile(t);
+    writeSolutionOnFile(0.0);
     updateReactiveValues();
 
     clearThatG();
     clearThatRHSVector();
     clearThatSolutionVector();
 }
+

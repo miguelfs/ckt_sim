@@ -15,9 +15,9 @@ int main() {
 
     netlist.buildFirstIteraction();
 
-    for (double t = 0; t < netlist.getFinalTime();) {
-        netlist.buildThatG();
-        netlist.buildThatRHSVector(t);
+    for (double t = netlist.getTimeStep(); t <= netlist.getFinalTime();) {
+        netlist.buildThatG(transientResponse);
+        netlist.buildThatRHSVector(t, initialConditions);
 
         netlist.solveSystem();
 
@@ -30,8 +30,8 @@ int main() {
 
         t += netlist.getTimeStep();
     }
-    cout << '\n' << "transient table located on " << netlist.getWrittenFileName();
-    cout << '\n' << "Press ENTER twice to close...";
+    cout << '\n' << "transientResponse table located on " << netlist.getWrittenFileName();
+    cout << '\n' << "Press ENTER once to close...";
     getchar();
     return 0;
 }

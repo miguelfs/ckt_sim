@@ -17,9 +17,9 @@ public:
 
     explicit Netlist(std::string);
 
-    void buildThatG();
+    void buildThatG(OperationMethod operationMethod);
 
-    void buildThatRHSVector(double time);
+    void buildThatRHSVector(double time, OperationMethod operationMethod);
 
     void doOperatingPointIfNeeded();
 
@@ -48,8 +48,6 @@ public:
     void buildFirstIteraction();
 
     OperationMethod getOperationMethod();
-
-    void solveAndWrite(double t);
 
 private:
     std::vector<Component *> components;
