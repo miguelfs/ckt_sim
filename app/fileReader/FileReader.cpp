@@ -6,7 +6,6 @@
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
-#include <conio.h>
 
 FileReader::FileReader(string fileName) {
 
@@ -16,10 +15,10 @@ FileReader::FileReader(string fileName) {
     ifstream in(fileName);
 
     if (!in) {
-        cerr<< "Could not open netlist " << fileName <<
-        "\nCheck if the file you've written here is located in the INPUT folder.\n" <<
-        "press ENTER to exit..." << std::endl;
-        getch();
+        cerr << "Could not open netlist " << fileName <<
+             "\nCheck if the file you've written here is located in the same folder as ckt_sim.exe.\n" <<
+             "press ENTER to exit..." << std::endl;
+        getchar();
         exit(0);
     }
 

@@ -16,8 +16,10 @@ enum PathForExeProgram{
     buildRelaseOrDebugFolder
 };
 
+void setFilePath(const DevOS &myOS, const PathForExeProgram &pathForExe, const string &filename, string &filepath);
+
 int main() {
-    DevOS myOS = windowsOS;
+    DevOS myOS = macOS;
     PathForExeProgram pathForExe = buildRelaseOrDebugFolder;
 
     std::string filename;
@@ -28,10 +30,7 @@ int main() {
     cin >> filename;
 
     std::string filepath = filename;
-    if (myOS == macOS || (myOS == windowsOS && pathForExe == projectRootFolder))
-        filepath = filename;
-    if (myOS == windowsOS && pathForExe == buildRelaseOrDebugFolder)
-        filepath = "../" + filename;
+    setFilePath(myOS, pathForExe, filename, filepath);
 
     Netlist netlist = Netlist(filepath);
 
@@ -62,4 +61,13 @@ int main() {
     getchar();
 
     return 0;
+}
+
+void setFilePath(const DevOS &myOS, const PathForExeProgram &pathForExe, const string &filename, string &filepath) {
+    if (myOS == windowsOS && pathForExe == projectRootFolder)
+        filepath = filename;
+    if (myOS == macOS)
+        filepath = "../" + filename;
+    if (myOS == windowsOS && pathForExe == buildRelaseOrDebugFolder)
+        filepath = "../" + filename;
 }
