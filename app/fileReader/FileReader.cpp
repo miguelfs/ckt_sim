@@ -19,7 +19,8 @@ FileReader::FileReader(string fileName) {
         cerr<< "Could not open netlist " << fileName <<
         "\nCheck if the file you've written here is located in the INPUT folder.\n" <<
         "press ENTER to exit..." << std::endl;
-        getch();
+        getchar();
+        getchar();
         exit(0);
     }
 
