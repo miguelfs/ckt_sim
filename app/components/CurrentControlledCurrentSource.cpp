@@ -34,6 +34,6 @@ void CurrentControlledCurrentSource::stampSolutionVector(double *solutionVector)
 
 }
 
-void CurrentControlledCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void CurrentControlledCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
 
 }

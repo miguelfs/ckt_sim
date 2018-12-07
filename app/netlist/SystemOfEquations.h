@@ -8,6 +8,7 @@
 
 #include "../components/Component.h"
 #include "OperationMethod.h"
+#include <vector>
 
 class SystemOfEquations {
 public:
@@ -24,15 +25,14 @@ public:
 
     void initializeGMatrix();
 
-    void buildThatG(int quantityOfComponents, std::vector<Component *> &components);
-
-    void isOperatingPointNeeded(bool i);
+    void buildThatG(int quantityOfComponents, std::vector<Component *> &components,
+                        OperationMethod operationMethod);
 
     void initializeRSVector();
 
     void initializeSolutionsVector();
 
-    void buildThatRSVector(int quantityOfComponents, std::vector<Component *> &components);
+    void buildThatRSVector(int quantityOfComponents, std::vector<Component *> &components, double time);
 
     void solveSystem();
 
@@ -46,19 +46,20 @@ public:
 
     void clearThatSolutionVector();
 
-    void printThatG();
-
-    void printThatRHS();
-
 private:
     int orderOfMatrixG;
 
-
     OperationMethod operationMethod;
+public:
+    void setOperationMethod(OperationMethod operationMethod);
+
+public:
+    OperationMethod getOperationMethod();
+
+private:
 
 
-
-    void eliminateGroundVariables(double **G, double *RHSVector, int dimension);
+    void solve();
 
 };
 

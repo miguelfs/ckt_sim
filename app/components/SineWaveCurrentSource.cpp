@@ -5,7 +5,7 @@
 #include "SineWaveCurrentSource.h"
 #include "SineWaveParameters.h"
 
-SineWaveCurrentSource::SineWaveCurrentSource(std::string row, int quantityOfArguments) : Component() {
+SineWaveCurrentSource::SineWaveCurrentSource(std::string row, int quantityOfArguments) : Component(currentSource) {
     std::string arguments[quantityOfArguments];
     splitRow(quantityOfArguments, std::move(row), arguments);
     //std::move to avoid unnecessary copies, only copy once
@@ -27,8 +27,9 @@ SineWaveCurrentSource::SineWaveCurrentSource(std::string row, int quantityOfArgu
 void SineWaveCurrentSource::stampG(double **G, OperationMethod operationMethod) {
 }
 
-void SineWaveCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
-    sineWaveParameters->setValue(0);
+void
+SineWaveCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
+    sineWaveParameters->setValue(time);
     this->current = sineWaveParameters->getValue();
 
     rightSideVector[nodes[0]] += -1.0 * current;

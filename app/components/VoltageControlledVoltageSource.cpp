@@ -2,6 +2,7 @@
 // Created by Miguel Sousa on 02/11/18.
 //
 
+#include <iostream>
 #include "VoltageControlledVoltageSource.h"
 #include "../netlist/OperationMethod.h"
 
@@ -19,6 +20,9 @@ VoltageControlledVoltageSource::VoltageControlledVoltageSource(std::string row, 
     this->wire = wire;
 
     this->gain = strtod(arguments[5].c_str(), nullptr);
+
+    std::cout << "name = " << name << ",  nodeA = " << nodes[0] << ", nodeB = " << nodes[1] << ", wire = " << wire <<
+              ", GAIN = " << gain << std::endl;
 }
 
 void VoltageControlledVoltageSource::stampG(double **Gmatrix, OperationMethod operationMethod) {
@@ -36,6 +40,10 @@ void VoltageControlledVoltageSource::stampSolutionVector(double *solutionVector)
 
 }
 
-void VoltageControlledVoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void VoltageControlledVoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
 
+}
+
+ std::string VoltageControlledVoltageSource::getName(){
+    return name;
 }

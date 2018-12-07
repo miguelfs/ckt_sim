@@ -4,6 +4,8 @@
 
 #include <sstream>
 #include <vector>
+#include <stdexcept>
+#include <iterator>
 #include "Row.h"
 #include "../components/Resistor.h"
 #include "../components/Inductor.h"
@@ -47,7 +49,7 @@ Component * Row::getComponent(double timeStep, int wire) {
             return getCurrentSource(stringRow, wire);
             //   return new DCCurrentSource(stringRow, 4);
         case voltageSource :
-            return getVoltageSource(stringRow, 0);
+            return getVoltageSource(stringRow, wire);
             //   return new DCVoltageSource(stringRow, 4, wire);
         case ampOp :
             return new AmpOp(stringRow, 5, wire);
@@ -87,7 +89,7 @@ Component *Row::getVoltageSource(std::string row, int wire) {
         case Sinusoidal :
             return new SineWaveVoltageSource(row, 3 + 8, wire);
         default: {
-            throw std::invalid_argument("Received invalid voltage source :\n\n" + stringRow +
+            throw std::invalid_argument("Received invalid voltage source :\n\n at row " +stringRow +
                                         "\nPlease be sure your component belongs to ComponentType.h");
         }
     }
@@ -106,7 +108,7 @@ Component *Row::getCurrentSource(std::string row, int wire) {
         case Sinusoidal :
             return new SineWaveCurrentSource(row, 11);
         default: {
-            throw std::invalid_argument("Received invalid voltage source :\n\n" + stringRow +
+            throw std::invalid_argument("Received invalid current source :\n\n" + stringRow +
                                         "\nPlease be sure your component belongs to ComponentType.h");
         }
     }

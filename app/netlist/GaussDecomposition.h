@@ -12,6 +12,8 @@ public:
 
     void solve(double **G, double *RHSVector, int dimension);
 
+    int resolverSistema(double **G, double *RHSVector, int dimension);
+
 private:
 
     void swapRows(double **squareMatrix, int rowA, int rowB, int dimension);

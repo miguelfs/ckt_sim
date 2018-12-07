@@ -14,7 +14,7 @@ class PulseVoltageSource : public Component {
 public:
     PulseVoltageSource(std::string row, int quantityOfArguments, int wire, double timeStep);
 
-    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
+    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) override;
 
     void stampG(double **G, OperationMethod operationMethod) override;
 

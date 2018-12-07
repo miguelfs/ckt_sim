@@ -5,12 +5,23 @@
 #include "FileReader.h"
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
+#include <conio.h>
 
 FileReader::FileReader(string fileName) {
 
     int numberOfLines = getNumberOfLines(fileName);
     textLines = new string[numberOfLines];
+    std::cout << "file name is = " << fileName << "\n";
     ifstream in(fileName);
+
+    if (!in) {
+        cerr<< "Could not open netlist " << fileName <<
+        "\nCheck if the file you've written here is located in the INPUT folder.\n" <<
+        "press ENTER to exit..." << std::endl;
+        getch();
+        exit(0);
+    }
 
     int i = 0;
     for( std::string line; getline( in, line ); )

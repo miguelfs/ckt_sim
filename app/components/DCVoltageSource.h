@@ -18,7 +18,7 @@ public:
     void stampG(double **G, OperationMethod operationMethod) override;
     void stampSolutionVector(double* solutionVector) override;
 
-    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
+    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) override;
 
 private:
     int wire;

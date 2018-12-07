@@ -36,7 +36,8 @@ SineWaveParameters::SineWaveParameters(double dcOffset, double amplitude, double
                                                                                       delay(delay),
                                                                                       damping(damping),
                                                                                       phase(phase),
-                                                                                      cycles(cycles) {}
+                                                                                      cycles(cycles) {
+}
 
 double SineWaveParameters::getValue() {
     return value;
