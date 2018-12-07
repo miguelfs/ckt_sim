@@ -11,6 +11,13 @@
 
 class VoltageControlledVoltageSource : public Component{
 
+private:
+    int wire;
+    double gain;
+    std::string name;
+public:
+    std::string getName() override;
+
 public:
     VoltageControlledVoltageSource(std::string row, int quantityOfArguments, int wire);
 
@@ -18,9 +25,6 @@ public:
     void stampSolutionVector(double* solutionVector) override;
 
     void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) override;
-
-    int wire;
-    double gain;
 };
 
 

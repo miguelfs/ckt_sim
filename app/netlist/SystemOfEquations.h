@@ -46,10 +46,6 @@ public:
 
     void clearThatSolutionVector();
 
-    void printThatG();
-
-    void printThatRHS();
-
 private:
     int orderOfMatrixG;
 
@@ -63,7 +59,6 @@ public:
 private:
 
 
-    void eliminateGroundVariables(double **G, double *RHSVector, int dimension);
     void solve();
 
 };

@@ -30,34 +30,6 @@ void SystemOfEquations::buildThatG(int quantityOfComponents, std::vector<Compone
 }
 
 
-void SystemOfEquations::printThatG() {
-    std::cout << std::fixed << std::endl;
-    for (int i = 0; i < orderOfMatrixG; i++) {
-        std::cout << "[ ";
-        for (int j = 0; j < orderOfMatrixG; j++) {
-            if (G[i][j] > 0 || G[i][j] == 0)
-                std::cout << /*std::setprecision(3) <<*/ " " << G[i][j] << "\t\t\t\t";
-            else
-                std::cout <</* std::setprecision(3) <<*/ G[i][j] << "\t\t\t\t";
-        }
-        std::cout << "]" << std::endl;
-    }
-    std::cout << std::endl;
-}
-
-void SystemOfEquations::printThatRHS() {
-    std::cout << std::fixed << std::endl;
-    for (int i = 0; i < orderOfMatrixG; i++) {
-        std::cout << "[ ";
-        if (RHSVector[i] > 0 || RHSVector[i] == 0)
-            std::cout << std::setprecision(3) << " " << RHSVector[i] << "\t";
-        else
-            std::cout << std::setprecision(3) << RHSVector[i] << "\t";
-        std::cout << "]" << std::endl;
-    }
-    std::cout << std::endl;
-}
-
 void SystemOfEquations::initializeRSVector() {
     RHSVector = (double *) malloc(orderOfMatrixG * sizeof(double));
 
@@ -90,26 +62,7 @@ SystemOfEquations::SystemOfEquations() {
 }
 
 void SystemOfEquations::solveSystem() {
-
- //   printThatG();
-//    printThatRHS();
-
-    std::cout << "Solve Gx=b:\n";
     this->solve();
-    std::cout << "Got solution vector.\n";
-}
-
-void SystemOfEquations::eliminateGroundVariables(double **G, double *RHSVector, int dimension) {
-    for (int row = 0; row < dimension; row++)
-        for (int column = 1; column < dimension; column++)
-            G[row][column - 1] = G[row][column];
-
-    for (int column = 0; column < dimension - 1; column++)
-        for (int row = 1; row < dimension; row++)
-            G[row - 1][column] = G[row][column];
-
-    for (int row = 1; row < dimension; row++)
-        RHSVector[row - 1] = RHSVector[row - 1];
 }
 
 double *SystemOfEquations::getSolutionVector() {
@@ -142,13 +95,13 @@ void SystemOfEquations::solve() {
     for (int column = 1; column < orderOfMatrixG; column++)
         g(row - 1, column - 1) = G[row][column];
     }
-    Eigen::IOFormat CleanFmt(4, 0, ", ", "\n", "[", "]");
+ //   Eigen::IOFormat CleanFmt(4, 0, ", ", "\n", "[", "]");
 
-    std::cout << "G MATRIX: \n" << g.format(CleanFmt) << "\n\n";
-    std::cout <<"RHS VECTOR: \n" << rhsVector.format(CleanFmt) << "\n\n";
+ //   std::cout << "G MATRIX: \n" << g.format(CleanFmt) << "\n\n";
+//    std::cout <<"RHS VECTOR: \n" << rhsVector.format(CleanFmt) << "\n\n";
 
     Eigen::VectorXd solutionVector = g.colPivHouseholderQr().solve(rhsVector);
-    std::cout << "SOLUTION VECTOR: \n" <<solutionVector.format(CleanFmt) << "\n\n";
+ //   std::cout << "SOLUTION VECTOR: \n" <<solutionVector.format(CleanFmt) << "\n\n";
 
     SolutionVector[0] = 0;
     for (int row = 1; row < orderOfMatrixG; row++)

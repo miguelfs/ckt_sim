@@ -21,8 +21,6 @@ public:
 
     void buildThatRHSVector(double time, OperationMethod operationMethod);
 
-    void doOperatingPointIfNeeded();
-
     void solveSystem();
 
     void updateReactiveValues();
@@ -39,15 +37,9 @@ public:
 
     void clearThatSolutionVector();
 
-    void printGandRHS();
-
     std::string getWrittenFileName();
 
-    void writeInitialConditionsIfNeeded();
-
     void buildFirstIteraction();
-
-    OperationMethod getOperationMethod();
 
 private:
     std::vector<Component *> components;

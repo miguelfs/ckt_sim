@@ -29,7 +29,7 @@ class Component {
 
     virtual void setValue(double *SolutionVector);
 
-    const std::string &getName() const;
+    virtual std::string getName();
 
 protected:
      int nodes[2];

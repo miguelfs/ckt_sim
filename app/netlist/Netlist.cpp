@@ -76,10 +76,6 @@ void Netlist::buildThatRHSVector(double time, OperationMethod operationMethod) {
     systemOfEquations.buildThatRSVector(quantityOfComponents, components, time);
 }
 
-void Netlist::doOperatingPointIfNeeded() {
-
-}
-
 void Netlist::solveSystem() {
     systemOfEquations.solveSystem();
 }
@@ -123,25 +119,11 @@ void Netlist::clearThatSolutionVector() {
     systemOfEquations.clearThatSolutionVector();
 }
 
-void Netlist::printGandRHS() {
-    systemOfEquations.printThatG();
-    systemOfEquations.printThatRHS();
-}
-
 std::string Netlist::getWrittenFileName() {
     return fileWriter->getFileName();
 }
 
-void Netlist::writeInitialConditionsIfNeeded() {
- //   if (systemOfEquations.getOperationMethod() == initialConditions
-}
-
-OperationMethod  Netlist::getOperationMethod(){
-    return systemOfEquations.getOperationMethod();
-}
-
 void Netlist::buildFirstIteraction() {
-   // if (systemOfEquations.getOperationMethod() == initialConditions)
     buildThatG(systemOfEquations.getOperationMethod());
     buildThatRHSVector(0.0, systemOfEquations.getOperationMethod());
 

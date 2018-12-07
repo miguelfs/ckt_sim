@@ -50,7 +50,6 @@ void Capacitor::stampG(double **G, OperationMethod operationMethod) {
 
 void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
 
-    double voltageByIntegration = capacitance * voltage / timeStep;
     double stamp[2];
     stamp[0] = capacitance * voltage / timeStep;
     stamp[1] = -1.0 * capacitance * voltage / timeStep;
@@ -64,8 +63,7 @@ void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod op
          stamp[0] = 1.0 / infinitesimalReactance;
          stamp[1] = -1.0 / infinitesimalReactance;
      }
-
-
+     
     rightSideVector[nodes[0]] += stamp[0];
     rightSideVector[nodes[1]] += stamp[1];
 }

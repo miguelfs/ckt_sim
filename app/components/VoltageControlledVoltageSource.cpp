@@ -39,3 +39,7 @@ void VoltageControlledVoltageSource::stampSolutionVector(double *solutionVector)
 void VoltageControlledVoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
 
 }
+
+ std::string VoltageControlledVoltageSource::getName(){
+    return name;
+}

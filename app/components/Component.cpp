@@ -77,7 +77,7 @@ double Component::parse(string word) {
 void Component::setValue(double *SolutionVector) {
 }
 
-const string &Component::getName() const {
+ string Component::getName() {
     return name;
 }
 

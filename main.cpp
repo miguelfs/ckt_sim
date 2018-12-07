@@ -14,7 +14,8 @@ int main() {
     Netlist netlist = Netlist(filepath);
 
     netlist.buildFirstIteraction();
-
+    std::cout << "resolvendo sistema..." << std::endl;
+    int counter = 0;
     for (double t = netlist.getTimeStep(); t <= netlist.getFinalTime();) {
         netlist.buildThatG(transientResponse);
         netlist.buildThatRHSVector(t, initialConditions);
@@ -29,6 +30,9 @@ int main() {
         netlist.clearThatSolutionVector();
 
         t += netlist.getTimeStep();
+        counter++;
+        if ((counter % 1000) == 0)
+            cout<<"instante t = " << t << "..." << endl;
     }
     cout << '\n' << "transientResponse table located on " << netlist.getWrittenFileName();
     cout << '\n' << "Press ENTER once to close...";

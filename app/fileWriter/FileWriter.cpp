@@ -26,7 +26,6 @@ void FileWriter::writeRow(std::string row) {
         file.open(this->fileName, std::fstream::in | std::fstream::out | std::fstream::app);
         file << row << "\n";
         file.close();
-        cout << "\n";
     }
 }
 
