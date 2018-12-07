@@ -10,7 +10,7 @@
 #include <sstream>
 
 Netlist::Netlist(std::string fileName) : quantityOfAuxiliarCurrents(0), quantityOfComponents(0), systemOfEquations() {
-    std::cout << "NOME DO ARQUIVO EH " << fileName << "!!!\n";
+    std::cout << "FilePath is: " << fileName << "!!!\n";
 
     FileReader *fileReader = new FileReader(fileName);
 

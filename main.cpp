@@ -4,12 +4,34 @@
 #include "app/netlist/Netlist.h"
 #include "app/fileReader/FileReader.h"
 
+//I'm using both OS, folder paths changes depending on OS
+enum DevOS{
+    macOS,
+    windowsOS
+};
+
+//When giving the program to Moreirão, it's easier for him to manipule all the files in the same folder
+enum PathForExeProgram{
+    projectRootFolder,
+    buildRelaseOrDebugFolder
+};
+
 int main() {
+    DevOS myOS = windowsOS;
+    PathForExeProgram pathForExe = buildRelaseOrDebugFolder;
 
-    FileReader *fileReader = new FileReader("../inputName.txt");
+    std::string filename;
+    cout << "\nWelcome to ckt_sim: circuit simulator. Developed by Miguel de Sousa and Pedro Gil, 2018."<< endl;
+    cout << "\nPlease enter the netlist file name, case-sensitive.  Ex: tanqueLC.net, blumlein.net, etc..." << endl;
+  //  cout << "The file must be located INSIDE input/ folder.\n" << endl;
+    cout << "The file must be located in the SAME directory as this .exe\n" << endl;
+    cin >> filename;
 
-    std::string *text = fileReader->getTextLines();
-    std::string filepath = "../input/" + string(text[0]);
+    std::string filepath = filename;
+    if (myOS == macOS || (myOS == windowsOS && pathForExe == projectRootFolder))
+        filepath = filename;
+    if (myOS == windowsOS && pathForExe == buildRelaseOrDebugFolder)
+        filepath = "../" + filename;
 
     Netlist netlist = Netlist(filepath);
 
@@ -37,5 +59,7 @@ int main() {
     cout << '\n' << "transientResponse table located on " << netlist.getWrittenFileName();
     cout << '\n' << "Press ENTER once to close...";
     getchar();
+    getchar();
+
     return 0;
 }

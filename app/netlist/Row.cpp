@@ -89,7 +89,7 @@ Component *Row::getVoltageSource(std::string row, int wire) {
         case Sinusoidal :
             return new SineWaveVoltageSource(row, 3 + 8, wire);
         default: {
-            throw std::invalid_argument("Received invalid voltage source :\n\n" + stringRow +
+            throw std::invalid_argument("Received invalid voltage source :\n\n at row " +stringRow +
                                         "\nPlease be sure your component belongs to ComponentType.h");
         }
     }
@@ -108,7 +108,7 @@ Component *Row::getCurrentSource(std::string row, int wire) {
         case Sinusoidal :
             return new SineWaveCurrentSource(row, 11);
         default: {
-            throw std::invalid_argument("Received invalid voltage source :\n\n" + stringRow +
+            throw std::invalid_argument("Received invalid current source :\n\n" + stringRow +
                                         "\nPlease be sure your component belongs to ComponentType.h");
         }
     }

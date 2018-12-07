@@ -32,16 +32,15 @@ void FileWriter::writeRow(std::string row) {
 FileWriter::FileWriter(string fileName) {
     std::stringstream ss;
     std::string substring = fileName.substr(0, fileName.find_last_of('.'));
-    std::cout << "arquivin = 2" << substring << std::endl;
 
     ss << substring  << "_cktsim" << ".tab";
     this->fileName = ss.str();
-    std::cout << "arquivin 3 = " << this->fileName<< std::endl;
+    std::cout << "file with solutions will be called:" << this->fileName<< std::endl;
 
     if (remove(this->fileName.c_str()) != 0)
-        cout << "Error deleting file\n";
+        cout << "File successfully created. Waiting for solutions to be written...\n";
     else
-        cout << "File successfully deleted\n";
+        cout << "File successfully overwritten. Waiting for solutions to be written...\n";
 }
 
 bool FileWriter::is_empty(std::ifstream &pFile) {
