@@ -29,7 +29,7 @@ void PulseCurrentSource::stampG(double **G, OperationMethod operationMethod) {
 }
 
 void PulseCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
-    pulseParameters->setValue(0);
+    pulseParameters->setValue(time);
     this->current = pulseParameters->getValue();
 
     rightSideVector[nodes[0]] += -1.0 * current;

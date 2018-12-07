@@ -36,7 +36,7 @@ void PulseVoltageSource::stampG(double **G, OperationMethod operationMethod) {
 
 void PulseVoltageSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
 
-    pulseParameters->setValue(0);
+    pulseParameters->setValue(time);
     voltage = pulseParameters->getValue();
     rightSideVector[wire] += -1.0 * voltage;
 }

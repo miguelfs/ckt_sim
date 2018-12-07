@@ -29,7 +29,7 @@ void SineWaveCurrentSource::stampG(double **G, OperationMethod operationMethod) 
 
 void
 SineWaveCurrentSource::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
-    sineWaveParameters->setValue(0);
+    sineWaveParameters->setValue(time);
     this->current = sineWaveParameters->getValue();
 
     rightSideVector[nodes[0]] += -1.0 * current;

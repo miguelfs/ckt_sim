@@ -63,7 +63,7 @@ void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod op
          stamp[0] = 1.0 / infinitesimalReactance;
          stamp[1] = -1.0 / infinitesimalReactance;
      }
-     
+
     rightSideVector[nodes[0]] += stamp[0];
     rightSideVector[nodes[1]] += stamp[1];
 }
