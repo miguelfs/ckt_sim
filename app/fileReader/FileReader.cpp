@@ -15,9 +15,10 @@ FileReader::FileReader(string fileName) {
     ifstream in(fileName);
 
     if (!in) {
-        cerr << "Could not open netlist " << fileName <<
-             "\nCheck if the file you've written here is located in the same folder as ckt_sim.exe.\n" <<
-             "press ENTER to exit..." << std::endl;
+        cerr<< "Could not open netlist " << fileName <<
+        "\nCheck if the file you've written here is located in the INPUT folder.\n" <<
+        "press ENTER to exit..." << std::endl;
+        getchar();
         getchar();
         exit(0);
     }
