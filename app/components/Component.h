@@ -32,7 +32,7 @@ class Component {
     virtual std::string getName();
 
 protected:
-     int nodes[2];
+     int *nodes;
      std::string name;
 
      void splitRow(int size, std::string row, std::string *arr);
@@ -49,6 +49,8 @@ public:
 
 
     double parse(std::string word);
+
+    int getQuantityOfNodes(Component_Type type);
 };
 
 #endif //CKT_SIM_COMPONENT_H

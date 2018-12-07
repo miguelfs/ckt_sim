@@ -53,6 +53,7 @@ Component_Type Component::getComponentType() const {
 
 Component::Component(Component_Type type) {
     this->type = type;
+    nodes = (int*) malloc(getQuantityOfNodes(type) * sizeof(int));;
 }
 
 Component::Component() {
@@ -80,6 +81,21 @@ void Component::setValue(double *SolutionVector) {
  string Component::getName() {
     return name;
 }
+
+int Component::getQuantityOfNodes(Component_Type type) {
+        switch (type) {
+            case resistor:return 2;
+            case voltageControlledVoltageSource:return 4;
+            case inductor:return 2;
+            case capacitor:return 2;
+            case voltageControlledCurrentSource:return 4;
+            case currentControlledCurrentSource:return 4;
+            case currentControlledVoltageSource:return 4;
+            case currentSource:return 2;
+            case voltageSource:return 2;
+            case ampOp:return 4;
+        }
+    }
 
 
 

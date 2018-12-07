@@ -82,7 +82,6 @@ void SystemOfEquations::clearThatG() {
 }
 
 OperationMethod SystemOfEquations::getOperationMethod() {
-    std::cout << "pegar metodo de operacao\n";
     return operationMethod;
 }
 
