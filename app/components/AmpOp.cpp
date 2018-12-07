@@ -30,6 +30,6 @@ void AmpOp::stampSolutionVector(double *solutionVector) {
 
 }
 
-void AmpOp::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void AmpOp::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
 
 }

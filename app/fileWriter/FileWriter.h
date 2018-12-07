@@ -8,6 +8,7 @@
 
 #include "../components/ComponentType.h"
 #include "../components/Component.h"
+#include <vector>
 
 class FileWriter {
 public:
@@ -21,6 +22,10 @@ public:
 private:
 
     std::string fileName;
+public:
+    const std::string &getFileName() const;
+
+private:
 
     bool is_empty(std::ifstream &pFile);
 

@@ -16,7 +16,7 @@ public:
 
     void stampG(double **G, OperationMethod operationMethod) override;
 
-    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
+    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) override;
 
     PulseParameters *pulseParameters;
     double current;

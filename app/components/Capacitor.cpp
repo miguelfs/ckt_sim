@@ -6,7 +6,6 @@
 #include "../netlist/OperationMethod.h"
 #include <iostream>
 
-//TODO: ANALISE DE PONTO DE OPERACAO, 10 ELEVADO A 9 = MUITO GRANDE, 10 A MENOS 9 = MUITO PEQUENO
 Capacitor::Capacitor(std::string row, int quantityOfArguments, double timeStep) : Component(capacitor) {
     std::string arguments[quantityOfArguments];
     splitRow(quantityOfArguments, std::move(row), arguments); //std::move to avoid unnecessary copies, only copy once
@@ -31,8 +30,13 @@ void Capacitor::stampG(double **G, OperationMethod operationMethod) {
     }
 
     double conductance = capacitance / timeStep;
-    if (operationMethod == operatingPoint)
-        conductance = 0.000000000000001;
+
+    if (operationMethod == operatingPoint) {
+        conductance = 1.0 / infiniteReactance;
+    }
+
+    if (operationMethod == initialConditions)
+        conductance = capacitance / infinitesimalTimeStep;
 
     double stamp[2][2];
     stamp[0][0] = conductance ;
@@ -44,14 +48,21 @@ void Capacitor::stampG(double **G, OperationMethod operationMethod) {
 }
 
 
-void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void Capacitor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
+
     double stamp[2];
-    stamp[0] = 0.0;
-    stamp[1] = 0.0;
-    //  if (operationMethod == initialConditions) {
     stamp[0] = capacitance * voltage / timeStep;
     stamp[1] = -1.0 * capacitance * voltage / timeStep;
-    //  }
+
+      if (operationMethod == initialConditions) {
+          stamp[0] = capacitance * voltage / infinitesimalTimeStep;
+          stamp[1] = -1.0 * capacitance * voltage / infinitesimalTimeStep;
+     }
+
+     if (operationMethod == operatingPoint ) {
+         stamp[0] = 1.0 / infinitesimalReactance;
+         stamp[1] = -1.0 / infinitesimalReactance;
+     }
 
     rightSideVector[nodes[0]] += stamp[0];
     rightSideVector[nodes[1]] += stamp[1];

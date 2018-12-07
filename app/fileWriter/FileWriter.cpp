@@ -26,20 +26,21 @@ void FileWriter::writeRow(std::string row) {
         file.open(this->fileName, std::fstream::in | std::fstream::out | std::fstream::app);
         file << row << "\n";
         file.close();
-        cout << "\n";
     }
 }
 
 FileWriter::FileWriter(string fileName) {
     std::stringstream ss;
-    std::string substring = fileName.substr(0, fileName.find('.'));
-    ss << substring << ".res";
+    std::string substring = fileName.substr(0, fileName.find_last_of('.'));
+
+    ss << substring  << "_cktsim" << ".tab";
     this->fileName = ss.str();
+    std::cout << "file with solutions will be called:" << this->fileName<< std::endl;
 
     if (remove(this->fileName.c_str()) != 0)
-        cout << "Error deleting file\n";
+        cout << "File successfully created. Waiting for solutions to be written...\n";
     else
-        cout << "File successfully deleted\n";
+        cout << "File successfully overwritten. Waiting for solutions to be written...\n";
 }
 
 bool FileWriter::is_empty(std::ifstream &pFile) {
@@ -75,5 +76,9 @@ bool FileWriter::isOneCurrentNeeded(Component_Type type) {
 
 bool FileWriter::areTwoCurrentsNeeded(Component_Type type) {
     return type == currentControlledVoltageSource;
+}
+
+const string &FileWriter::getFileName() const {
+    return fileName;
 }
 

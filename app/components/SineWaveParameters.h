@@ -17,6 +17,7 @@
 #define M_2_SQRTPI 1.12837916709551257390
 #define M_SQRT2    1.41421356237309504880
 #define M_SQRT1_2  0.707106781186547524401
+#define TOLG 1e-15
 
 #include <cmath>
 #include <math.h>

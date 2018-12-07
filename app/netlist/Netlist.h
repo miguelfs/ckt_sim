@@ -17,11 +17,9 @@ public:
 
     explicit Netlist(std::string);
 
-    void buildThatG();
+    void buildThatG(OperationMethod operationMethod);
 
-    void buildThatRHSVector();
-
-    void doOperatingPointIfNeeded();
+    void buildThatRHSVector(double time, OperationMethod operationMethod);
 
     void solveSystem();
 
@@ -39,7 +37,9 @@ public:
 
     void clearThatSolutionVector();
 
-    void printGandRHS();
+    std::string getWrittenFileName();
+
+    void buildFirstIteraction();
 
 private:
     std::vector<Component *> components;

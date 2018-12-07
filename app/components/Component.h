@@ -4,7 +4,9 @@
 
 #ifndef CKT_SIM_COMPONENT_H
 #define CKT_SIM_COMPONENT_H
-
+#define infinitesimalTimeStep 0.0000000001000001
+#define infiniteReactance 1000000000000000
+#define infinitesimalReactance 0.000000000000001
 #include <string>
 #include "ComponentType.h"
 #include "../netlist/OperationMethod.h"
@@ -15,7 +17,7 @@ class Component {
 
     virtual void stampG(double **G, OperationMethod operationMethod);
 
-    virtual void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod);
+    virtual void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time);
 
  private:
      Component_Type type;
@@ -27,10 +29,10 @@ class Component {
 
     virtual void setValue(double *SolutionVector);
 
-    const std::string &getName() const;
+    virtual std::string getName();
 
 protected:
-     int *nodes;
+     int nodes[2];
      std::string name;
 
      void splitRow(int size, std::string row, std::string *arr);
@@ -43,11 +45,8 @@ protected:
 
      void GstampFor2x2Component(double **G, double stamp[2][2], int *nodes);
 
-    double time;
 public:
-    double getTime() const;
 
-    void setTime(double time);
 
     double parse(std::string word);
 };

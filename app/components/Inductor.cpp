@@ -30,10 +30,13 @@ void Inductor::stampG(double **G, OperationMethod operationMethod) {
         std::cout << errorToPrint;
     }
 
-    double conductance =  timeStep/inductance;
+    double resistance = inductance / timeStep;
 
     if (operationMethod == operatingPoint)
-        conductance = 9999999999999999;
+        resistance = infinitesimalReactance / timeStep;
+
+    if (operationMethod == initialConditions)
+        resistance = inductance / infinitesimalTimeStep;
 
     double stamp[3][3];
     stamp[0][0] = 0.0;
@@ -44,7 +47,7 @@ void Inductor::stampG(double **G, OperationMethod operationMethod) {
     stamp[1][2] = -1.0;
     stamp[2][0] = -1.0;
     stamp[2][1] = 1.0;
-    stamp[2][2] = conductance;
+    stamp[2][2] = resistance;
 
     G[nodes[0]][nodes[0]] += stamp[0][0];
     G[nodes[0]][nodes[1]] += stamp[0][1];
@@ -61,10 +64,19 @@ void Inductor::stampSolutionVector(double *solutionVector) {
 
 }
 
-void Inductor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) {
+void Inductor::stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) {
+
+    //if transient
+    double voltageByIntegration = inductance * current / timeStep;
+
+    if (operationMethod == operatingPoint)
+        voltageByIntegration = infinitesimalReactance * current / timeStep;
+
+    if (operationMethod == initialConditions)
+        voltageByIntegration = inductance * current / infinitesimalTimeStep;
 
     //   if (operationMethod == initialConditions){
-    rightSideVector[wire] = inductance * current / timeStep;
+    rightSideVector[wire] = voltageByIntegration;
     //   }
 }
 

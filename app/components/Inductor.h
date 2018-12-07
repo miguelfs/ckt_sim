@@ -28,7 +28,7 @@ private:
     void stampG(double **Gmatrix, OperationMethod operationMethod) override;
     void stampSolutionVector(double* solutionVector) override;
 
-    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod) override;
+    void stampRightSideVector(double *rightSideVector, OperationMethod operationMethod, double time) override;
     void isEqualsZero(double number);
 
     void setValue(double *SolutionVector) override;

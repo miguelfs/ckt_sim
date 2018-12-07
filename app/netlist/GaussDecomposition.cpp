@@ -4,7 +4,11 @@
 
 #include <math.h>
 #include <iostream>
+#include <Eigen/Dense>
+
 #include "GaussDecomposition.h"
+#define TOLG 1e-9
+
 
 //notar que sistema é resolvido a partir da linha 1 e coluna 1,
 // visto que linha 0 e coluna 0 é associada ao terra.
@@ -51,6 +55,9 @@ void GaussDecomposition::solve(double **G, double *RHSVector, int dimension) {
                 RHSVector[r] -= RHSVector[row] * fator;
                 for (int c = 1; c < dimension; c++) {
                     G[r][c] -= G[row][c] * fator;
+                    if (fabs(G[r][c]) < TOLG)
+                        G[r][c] = 0;
+                    std::cout << G[r][c] << std::endl;
                 }
             }
         }
@@ -74,6 +81,9 @@ void GaussDecomposition::swapRows(double *vector, int rowA, int rowB, int dimens
 
 void GaussDecomposition::isEqualsZero(double number) {
     if (number == 0)
-        throw ("timeStep equals zero, divide by timeStep not allowed");
-
+        throw ("dividing by zero, pivot not allowed");
 }
+
+
+
+

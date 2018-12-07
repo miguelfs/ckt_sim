@@ -5,11 +5,7 @@
 #include "PulseParameters.h"
 
 void PulseParameters::setValue(double time) {
-    /**
-     * Modela casos em que o tempo de subida e descida
-     * sao iguais a 0 para evitar problemas na plotagem
-     * do grafico
-     */
+
     if (riseTime == 0) {
         riseTime = timeStep;
     }
@@ -17,9 +13,7 @@ void PulseParameters::setValue(double time) {
         fallTime = timeStep;
     }
 
-    /**
-     * Regiao em que a fonte se encontra dentro do periodo
-     */
+
     double iPeriod = fmod((time - delay), period);
 
     if (time <= delay) {
